@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		0933154F1AB6F11E0083F111 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0933154E1AB6F11E0083F111 /* main.m */; };
 		093315521AB6F11E0083F111 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 093315511AB6F11E0083F111 /* AppDelegate.m */; };
-		093315551AB6F11E0083F111 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093315541AB6F11E0083F111 /* ViewController.m */; };
 		093315581AB6F11E0083F111 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 093315561AB6F11E0083F111 /* Main.storyboard */; };
 		0933155A1AB6F11F0083F111 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 093315591AB6F11F0083F111 /* Images.xcassets */; };
 		0933155D1AB6F11F0083F111 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0933155B1AB6F11F0083F111 /* LaunchScreen.xib */; };
 		093315691AB6F11F0083F111 /* WinPromosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 093315681AB6F11F0083F111 /* WinPromosTests.m */; };
+		093315741AB701A20083F111 /* AddPromoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093315731AB701A20083F111 /* AddPromoViewController.m */; };
+		093315781AB7039F0083F111 /* MyPromosListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093315771AB7039F0083F111 /* MyPromosListTableViewController.m */; };
+		0933157B1AB713070083F111 /* PromoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0933157A1AB713070083F111 /* PromoItem.m */; };
+		0933157F1AB739D50083F111 /* PromoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0933157E1AB739D50083F111 /* PromoDetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +35,20 @@
 		0933154E1AB6F11E0083F111 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		093315501AB6F11E0083F111 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		093315511AB6F11E0083F111 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		093315531AB6F11E0083F111 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		093315541AB6F11E0083F111 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		093315571AB6F11E0083F111 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		093315591AB6F11F0083F111 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0933155C1AB6F11F0083F111 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		093315621AB6F11F0083F111 /* WinPromosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WinPromosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		093315671AB6F11F0083F111 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		093315681AB6F11F0083F111 /* WinPromosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WinPromosTests.m; sourceTree = "<group>"; };
+		093315721AB701A20083F111 /* AddPromoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPromoViewController.h; sourceTree = "<group>"; };
+		093315731AB701A20083F111 /* AddPromoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPromoViewController.m; sourceTree = "<group>"; };
+		093315761AB7039F0083F111 /* MyPromosListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPromosListTableViewController.h; sourceTree = "<group>"; };
+		093315771AB7039F0083F111 /* MyPromosListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPromosListTableViewController.m; sourceTree = "<group>"; };
+		093315791AB713070083F111 /* PromoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoItem.h; sourceTree = "<group>"; };
+		0933157A1AB713070083F111 /* PromoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoItem.m; sourceTree = "<group>"; };
+		0933157D1AB739D50083F111 /* PromoDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromoDetailsViewController.h; path = WinPromos/PromoDetailsViewController.h; sourceTree = "<group>"; };
+		0933157E1AB739D50083F111 /* PromoDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PromoDetailsViewController.m; path = WinPromos/PromoDetailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +72,8 @@
 		093315401AB6F11E0083F111 = {
 			isa = PBXGroup;
 			children = (
+				0933157C1AB713100083F111 /* Model */,
+				093315751AB703410083F111 /* ViewControllers */,
 				0933154B1AB6F11E0083F111 /* WinPromos */,
 				093315651AB6F11F0083F111 /* WinPromosTests */,
 				0933154A1AB6F11E0083F111 /* Products */,
@@ -83,8 +94,6 @@
 			children = (
 				093315501AB6F11E0083F111 /* AppDelegate.h */,
 				093315511AB6F11E0083F111 /* AppDelegate.m */,
-				093315531AB6F11E0083F111 /* ViewController.h */,
-				093315541AB6F11E0083F111 /* ViewController.m */,
 				093315561AB6F11E0083F111 /* Main.storyboard */,
 				093315591AB6F11F0083F111 /* Images.xcassets */,
 				0933155B1AB6F11F0083F111 /* LaunchScreen.xib */,
@@ -117,6 +126,28 @@
 				093315671AB6F11F0083F111 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		093315751AB703410083F111 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				093315721AB701A20083F111 /* AddPromoViewController.h */,
+				093315731AB701A20083F111 /* AddPromoViewController.m */,
+				093315761AB7039F0083F111 /* MyPromosListTableViewController.h */,
+				093315771AB7039F0083F111 /* MyPromosListTableViewController.m */,
+				0933157D1AB739D50083F111 /* PromoDetailsViewController.h */,
+				0933157E1AB739D50083F111 /* PromoDetailsViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0933157C1AB713100083F111 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				093315791AB713070083F111 /* PromoItem.h */,
+				0933157A1AB713070083F111 /* PromoItem.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +250,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				093315551AB6F11E0083F111 /* ViewController.m in Sources */,
 				093315521AB6F11E0083F111 /* AppDelegate.m in Sources */,
+				093315741AB701A20083F111 /* AddPromoViewController.m in Sources */,
 				0933154F1AB6F11E0083F111 /* main.m in Sources */,
+				0933157F1AB739D50083F111 /* PromoDetailsViewController.m in Sources */,
+				0933157B1AB713070083F111 /* PromoItem.m in Sources */,
+				093315781AB7039F0083F111 /* MyPromosListTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
