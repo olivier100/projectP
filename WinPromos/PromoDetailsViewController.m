@@ -22,7 +22,7 @@
     // Do any additional setup after loading the view.
     self.promoSummaryLabel.text = self.promoItem.promoSummary;
     self.promoDescriptionLabel.text = self.promoItem.promoDescription;
-    self.promoRetailerLogoUIImageView.image = self.promoItem.promoRetailerLogo.image;
+    self.promoRetailerLogoUIImageView.image = self.promoItem.promoRetailerLogo;
 
 }
 

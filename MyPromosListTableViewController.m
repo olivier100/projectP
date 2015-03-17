@@ -12,6 +12,7 @@
 #import "PromoDetailsViewController.h"
 
 @interface MyPromosListTableViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *promoDescriptionLabel;
 
 @property (strong, nonatomic) NSMutableArray *promoItems;
 
@@ -39,20 +40,20 @@
     PromoItem *promo1 = [[PromoItem alloc]init];
     promo1.promoSummary = @"Promo 1";
     promo1.promoDescription = @"This is the description for promo 1. You can get this promotion by coming to the location and presenting your WinPromo pomo";
-    promo1.promoRetailerLogo.image = [UIImage imageNamed:@"image1.png"];
+    promo1.promoRetailerLogo = [UIImage imageNamed:@"image1.png"];
     [self.promoItems addObject:promo1];
 
     PromoItem *promo2 = [[PromoItem alloc]init];
     promo2.promoSummary = @"Promo 2";
     promo2.promoDescription = @"This is the description for promo 2. You can get this promotion by coming to the location and presenting your WinPromo pomo";
-    promo2.promoRetailerLogo.image = [UIImage imageNamed:@"image2.png"];
+    promo2.promoRetailerLogo = [UIImage imageNamed:@"image2.jpg"];
     [self.promoItems addObject:promo2];
 
     PromoItem *promo3 = [[PromoItem alloc]init];
     promo3.promoDescription = @"This is the description for promo 3. You can get this promotion by coming to the location and presenting your WinPromo pomo";
     promo3.promoSummary = @"Promo 3";
     UIImage *image = [UIImage imageNamed:@"image3.jpg"];
-    promo3.promoRetailerLogo.image = image;
+    promo3.promoRetailerLogo = image;
     [self.promoItems addObject:promo3];
 
 }
@@ -96,7 +97,11 @@
     // Configure the cell...
     PromoItem *promoItem = [self.promoItems objectAtIndex:indexPath.row];
     cell.textLabel.text = promoItem.promoSummary;
-    
+    cell.detailTextLabel.text = promoItem.promoDescription;
+    [cell.imageView setFrame:CGRectMake(0, 0, 10, 10)];
+    cell.imageView.image = promoItem.promoRetailerLogo;
+
+ 
     //DISPLAY ITEM COMPLETION STATE
     if (promoItem.promoCompleted) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -109,18 +114,10 @@
 
 #pragma mark - Table View Delegate
 
-//-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    
-//    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-//    PromoItem *tappedPromoItem = [self.promoItems objectAtIndex:indexPath.row];
-//    tappedPromoItem.promoCompleted = !tappedPromoItem.promoCompleted;
-//    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    
 //}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-}
 
 
 
@@ -174,6 +171,7 @@
     promoDetailViewController.promoItem = promoItem;
  
 }
+
 
 
 @end
