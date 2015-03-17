@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D52C4417-94BA-496C-8CE6-0C949AEE69EB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>WinPromos</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C74EDC4324CAFEE5958986AAAB500F8F463868CD</key>
+		<string>https://github.com/olivier100/projectP.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>WinPromos.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C74EDC4324CAFEE5958986AAAB500F8F463868CD</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/olivier100/projectP.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C74EDC4324CAFEE5958986AAAB500F8F463868CD</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C74EDC4324CAFEE5958986AAAB500F8F463868CD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>WinPromos</string>
+		</dict>
+	</array>
+</dict>
+</plist>

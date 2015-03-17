@@ -11,6 +11,7 @@
 @interface PromoDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *promoSummaryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promoDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *promoRetailerLogoUIImageView;
 
 @end
 
@@ -21,6 +22,7 @@
     // Do any additional setup after loading the view.
     self.promoSummaryLabel.text = self.promoItem.promoSummary;
     self.promoDescriptionLabel.text = self.promoItem.promoDescription;
+    self.promoRetailerLogoUIImageView.image = self.promoItem.promoRetailerLogo.image;
 
 }
 

@@ -65,9 +65,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kyL-Sm-P4N">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image4.png" translatesAutoresizingMaskIntoConstraints="NO" id="kyL-Sm-P4N">
                                 <rect key="frame" x="16" y="96" width="139" height="119"/>
-                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="139" id="6Ll-BB-dja"/>
                                 </constraints>
@@ -105,6 +104,7 @@
                     <navigationItem key="navigationItem" id="OWz-sR-cB6"/>
                     <connections>
                         <outlet property="promoDescriptionLabel" destination="wZt-Z9-osL" id="j4V-tB-oNU"/>
+                        <outlet property="promoRetailerLogoUIImageView" destination="kyL-Sm-P4N" id="Sht-4U-dBZ"/>
                         <outlet property="promoSummaryLabel" destination="aJY-67-rRp" id="uXc-e8-cjb"/>
                     </connections>
                 </viewController>
@@ -194,4 +194,7 @@
             <point key="canvasLocation" x="1230" y="357"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="image4.png" width="223" height="226"/>
+    </resources>
 </document>

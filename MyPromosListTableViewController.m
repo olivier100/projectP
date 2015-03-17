@@ -39,16 +39,20 @@
     PromoItem *promo1 = [[PromoItem alloc]init];
     promo1.promoSummary = @"Promo 1";
     promo1.promoDescription = @"This is the description for promo 1. You can get this promotion by coming to the location and presenting your WinPromo pomo";
+    promo1.promoRetailerLogo.image = [UIImage imageNamed:@"image1.png"];
     [self.promoItems addObject:promo1];
 
     PromoItem *promo2 = [[PromoItem alloc]init];
     promo2.promoSummary = @"Promo 2";
     promo2.promoDescription = @"This is the description for promo 2. You can get this promotion by coming to the location and presenting your WinPromo pomo";
+    promo2.promoRetailerLogo.image = [UIImage imageNamed:@"image2.png"];
     [self.promoItems addObject:promo2];
 
     PromoItem *promo3 = [[PromoItem alloc]init];
     promo3.promoDescription = @"This is the description for promo 3. You can get this promotion by coming to the location and presenting your WinPromo pomo";
     promo3.promoSummary = @"Promo 3";
+    UIImage *image = [UIImage imageNamed:@"image3.jpg"];
+    promo3.promoRetailerLogo.image = image;
     [self.promoItems addObject:promo3];
 
 }

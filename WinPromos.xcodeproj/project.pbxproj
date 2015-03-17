@@ -17,6 +17,11 @@
 		093315781AB7039F0083F111 /* MyPromosListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093315771AB7039F0083F111 /* MyPromosListTableViewController.m */; };
 		0933157B1AB713070083F111 /* PromoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0933157A1AB713070083F111 /* PromoItem.m */; };
 		0933157F1AB739D50083F111 /* PromoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0933157E1AB739D50083F111 /* PromoDetailsViewController.m */; };
+		098054321AB86976002176B1 /* image1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0980542D1AB86976002176B1 /* image1.png */; };
+		098054331AB86976002176B1 /* image2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0980542E1AB86976002176B1 /* image2.jpg */; };
+		098054341AB86976002176B1 /* image3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0980542F1AB86976002176B1 /* image3.jpg */; };
+		098054351AB86976002176B1 /* image4.png in Resources */ = {isa = PBXBuildFile; fileRef = 098054301AB86976002176B1 /* image4.png */; };
+		098054361AB86976002176B1 /* image5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 098054311AB86976002176B1 /* image5.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,11 @@
 		0933157A1AB713070083F111 /* PromoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoItem.m; sourceTree = "<group>"; };
 		0933157D1AB739D50083F111 /* PromoDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromoDetailsViewController.h; path = WinPromos/PromoDetailsViewController.h; sourceTree = "<group>"; };
 		0933157E1AB739D50083F111 /* PromoDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PromoDetailsViewController.m; path = WinPromos/PromoDetailsViewController.m; sourceTree = "<group>"; };
+		0980542D1AB86976002176B1 /* image1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image1.png; sourceTree = "<group>"; };
+		0980542E1AB86976002176B1 /* image2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image2.jpg; sourceTree = "<group>"; };
+		0980542F1AB86976002176B1 /* image3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image3.jpg; sourceTree = "<group>"; };
+		098054301AB86976002176B1 /* image4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image4.png; sourceTree = "<group>"; };
+		098054311AB86976002176B1 /* image5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image5.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +82,7 @@
 		093315401AB6F11E0083F111 = {
 			isa = PBXGroup;
 			children = (
+				098054381AB8698E002176B1 /* Logos */,
 				0933157C1AB713100083F111 /* Model */,
 				093315751AB703410083F111 /* ViewControllers */,
 				0933154B1AB6F11E0083F111 /* WinPromos */,
@@ -148,6 +159,18 @@
 				0933157A1AB713070083F111 /* PromoItem.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		098054381AB8698E002176B1 /* Logos */ = {
+			isa = PBXGroup;
+			children = (
+				0980542D1AB86976002176B1 /* image1.png */,
+				0980542E1AB86976002176B1 /* image2.jpg */,
+				0980542F1AB86976002176B1 /* image3.jpg */,
+				098054301AB86976002176B1 /* image4.png */,
+				098054311AB86976002176B1 /* image5.jpg */,
+			);
+			name = Logos;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +254,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				093315581AB6F11E0083F111 /* Main.storyboard in Resources */,
+				098054361AB86976002176B1 /* image5.jpg in Resources */,
+				098054331AB86976002176B1 /* image2.jpg in Resources */,
+				098054321AB86976002176B1 /* image1.png in Resources */,
+				098054341AB86976002176B1 /* image3.jpg in Resources */,
+				098054351AB86976002176B1 /* image4.png in Resources */,
 				0933155D1AB6F11F0083F111 /* LaunchScreen.xib in Resources */,
 				0933155A1AB6F11F0083F111 /* Images.xcassets in Resources */,
 			);
@@ -446,6 +474,7 @@
 				0933156E1AB6F11F0083F111 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0933156F1AB6F11F0083F111 /* Build configuration list for PBXNativeTarget "WinPromosTests" */ = {
 			isa = XCConfigurationList;
@@ -454,6 +483,7 @@
 				093315711AB6F11F0083F111 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
