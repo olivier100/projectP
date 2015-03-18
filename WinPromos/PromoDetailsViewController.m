@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *promoSummaryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promoDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *promoRetailerLogoUIImageView;
+@property (weak, nonatomic) IBOutlet UILabel *promoRetailerName;
 
 @end
 
@@ -20,9 +21,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.promoRetailerName.text = self.promoItem.promoRetailerName;
     self.promoSummaryLabel.text = self.promoItem.promoSummary;
     self.promoDescriptionLabel.text = self.promoItem.promoDescription;
-    self.promoRetailerLogoUIImageView.image = self.promoItem.promoRetailerLogo;
+    self.promoRetailerLogoUIImageView.image = self.promoItem.promoImage;
 
 }
 

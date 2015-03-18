@@ -68,20 +68,29 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kyL-Sm-P4N">
                                 <rect key="frame" x="16" y="96" width="139" height="119"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="139" id="6Ll-BB-dja"/>
+                                    <constraint firstAttribute="width" constant="139" id="yL1-YB-oOf"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Promo summary" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJY-67-rRp">
-                                <rect key="frame" x="173" y="96" width="411" height="21"/>
+                                <rect key="frame" x="173" y="128" width="411" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="mI8-sG-IQc"/>
+                                    <constraint firstAttribute="height" constant="21" id="ZzL-NX-GPz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Promo description" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZt-Z9-osL">
-                                <rect key="frame" x="173" y="125" width="411" height="26"/>
+                                <rect key="frame" x="173" y="157" width="411" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Retailer name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fK-Az-Qq6">
+                                <rect key="frame" x="173" y="96" width="411" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="ys5-oP-Cqr"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -89,22 +98,26 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wZt-Z9-osL" firstAttribute="leading" secondItem="aJY-67-rRp" secondAttribute="leading" id="29g-go-9DL"/>
-                            <constraint firstItem="wZt-Z9-osL" firstAttribute="trailing" secondItem="79t-wb-xr5" secondAttribute="trailingMargin" id="5dR-qI-4wS"/>
-                            <constraint firstItem="kyL-Sm-P4N" firstAttribute="top" secondItem="H0D-RP-Hea" secondAttribute="bottom" constant="32" id="HWP-KX-dNX"/>
-                            <constraint firstItem="yf3-Ra-Bxj" firstAttribute="top" secondItem="kyL-Sm-P4N" secondAttribute="bottom" constant="385" id="MAo-Ph-g15"/>
-                            <constraint firstItem="aJY-67-rRp" firstAttribute="top" secondItem="kyL-Sm-P4N" secondAttribute="top" id="NsF-lo-vQE"/>
-                            <constraint firstItem="wZt-Z9-osL" firstAttribute="top" secondItem="aJY-67-rRp" secondAttribute="bottom" constant="8" symbolic="YES" id="REH-FF-l9G"/>
-                            <constraint firstItem="yf3-Ra-Bxj" firstAttribute="top" secondItem="wZt-Z9-osL" secondAttribute="bottom" constant="449" id="SAp-JM-RB7"/>
-                            <constraint firstItem="aJY-67-rRp" firstAttribute="trailing" secondItem="wZt-Z9-osL" secondAttribute="trailing" id="blM-3T-cqV"/>
-                            <constraint firstItem="aJY-67-rRp" firstAttribute="leading" secondItem="kyL-Sm-P4N" secondAttribute="trailing" constant="18" id="qJF-Sm-5f9"/>
-                            <constraint firstItem="kyL-Sm-P4N" firstAttribute="leading" secondItem="79t-wb-xr5" secondAttribute="leadingMargin" id="u8t-h6-fep"/>
+                            <constraint firstItem="aJY-67-rRp" firstAttribute="top" secondItem="8fK-Az-Qq6" secondAttribute="bottom" constant="11" id="0U7-mM-2CF"/>
+                            <constraint firstItem="8fK-Az-Qq6" firstAttribute="top" secondItem="kyL-Sm-P4N" secondAttribute="top" id="9fL-tH-Hwq"/>
+                            <constraint firstItem="8fK-Az-Qq6" firstAttribute="trailing" secondItem="79t-wb-xr5" secondAttribute="trailingMargin" id="BP2-X4-0qC"/>
+                            <constraint firstItem="wZt-Z9-osL" firstAttribute="top" secondItem="aJY-67-rRp" secondAttribute="bottom" constant="8" symbolic="YES" id="EVO-PE-8Eu"/>
+                            <constraint firstItem="yf3-Ra-Bxj" firstAttribute="top" secondItem="wZt-Z9-osL" secondAttribute="bottom" constant="417" id="G7n-PQ-Gio"/>
+                            <constraint firstItem="aJY-67-rRp" firstAttribute="trailing" secondItem="wZt-Z9-osL" secondAttribute="trailing" id="G7q-gL-pnR"/>
+                            <constraint firstItem="kyL-Sm-P4N" firstAttribute="leading" secondItem="79t-wb-xr5" secondAttribute="leadingMargin" id="HGN-da-l2N"/>
+                            <constraint firstItem="wZt-Z9-osL" firstAttribute="leading" secondItem="aJY-67-rRp" secondAttribute="leading" id="Mri-BH-fj3"/>
+                            <constraint firstItem="8fK-Az-Qq6" firstAttribute="leading" secondItem="aJY-67-rRp" secondAttribute="leading" id="SaJ-Yz-6ED"/>
+                            <constraint firstItem="8fK-Az-Qq6" firstAttribute="leading" secondItem="kyL-Sm-P4N" secondAttribute="trailing" constant="18" id="f0H-eG-Ap3"/>
+                            <constraint firstItem="8fK-Az-Qq6" firstAttribute="trailing" secondItem="aJY-67-rRp" secondAttribute="trailing" id="nnP-oX-w52"/>
+                            <constraint firstItem="yf3-Ra-Bxj" firstAttribute="top" secondItem="kyL-Sm-P4N" secondAttribute="bottom" constant="385" id="qDT-zo-Cp5"/>
+                            <constraint firstItem="kyL-Sm-P4N" firstAttribute="top" secondItem="H0D-RP-Hea" secondAttribute="bottom" constant="32" id="x0X-Kb-S0x"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OWz-sR-cB6"/>
                     <connections>
                         <outlet property="promoDescriptionLabel" destination="wZt-Z9-osL" id="j4V-tB-oNU"/>
                         <outlet property="promoRetailerLogoUIImageView" destination="kyL-Sm-P4N" id="Sht-4U-dBZ"/>
+                        <outlet property="promoRetailerName" destination="8fK-Az-Qq6" id="hEK-K5-9MR"/>
                         <outlet property="promoSummaryLabel" destination="aJY-67-rRp" id="uXc-e8-cjb"/>
                     </connections>
                 </viewController>
