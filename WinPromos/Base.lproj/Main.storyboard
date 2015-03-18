@@ -146,10 +146,6 @@
                             </tableViewCell>
                         </prototypes>
                         <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="d0d-as-ryO" id="kQS-hH-Fq0"/>
-                            <outlet property="delegate" destination="d0d-as-ryO" id="zOB-R9-AYq"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Promos" id="a7J-Lf-m45">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="sTD-JD-M0N">

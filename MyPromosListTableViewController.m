@@ -10,8 +10,9 @@
 #import "PromoItem.h"
 #import "AddPromoViewController.h"
 #import "PromoDetailsViewController.h"
+#import <Parse/Parse.h>
 
-@interface MyPromosListTableViewController ()
+@interface MyPromosListTableViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *promoDescriptionLabel;
 
 @property (strong, nonatomic) NSMutableArray *promoItems;
@@ -25,39 +26,66 @@
     [super viewDidLoad];
     
     self.promoItems = [[NSMutableArray alloc] init];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     [self loadInitialData];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
 
 -(void)loadInitialData{
  
     //ADD ITEMS
-    PromoItem *promo1 = [[PromoItem alloc]init];
-    promo1.promoSummary = @"Promo 1";
-    promo1.promoDescription = @"This is the description for promo 1. You can get this promotion by coming to the location and presenting your WinPromo pomo";
-    promo1.promoRetailerLogo = [UIImage imageNamed:@"image1.png"];
-    [self.promoItems addObject:promo1];
+//    PromoItem *promo1 = [[PromoItem alloc]init];
+//    promo1.promoSummary = @"Promo 1";
+//    promo1.promoDescription = @"This is the description for promo 1. You can get this promotion by coming to the location and presenting your WinPromo pomo";
+//    promo1.promoRetailerLogo = [UIImage imageNamed:@"image1.png"];
+//    [self.promoItems addObject:promo1];
+//
+//    PromoItem *promo2 = [[PromoItem alloc]init];
+//    promo2.promoSummary = @"Promo 2";
+//    promo2.promoDescription = @"This is the description for promo 2. You can get this promotion by coming to the location and presenting your WinPromo pomo";
+//    promo2.promoRetailerLogo = [UIImage imageNamed:@"image2.jpg"];
+//    [self.promoItems addObject:promo2];
+//
+//    PromoItem *promo3 = [[PromoItem alloc]init];
+//    promo3.promoDescription = @"This is the description for promo 3. You can get this promotion by coming to the location and presenting your WinPromo pomo";
+//    promo3.promoSummary = @"Promo 3";
+//    UIImage *image = [UIImage imageNamed:@"image3.jpg"];
+//    promo3.promoRetailerLogo = image;
+//    [self.promoItems addObject:promo3];
+    
 
-    PromoItem *promo2 = [[PromoItem alloc]init];
-    promo2.promoSummary = @"Promo 2";
-    promo2.promoDescription = @"This is the description for promo 2. You can get this promotion by coming to the location and presenting your WinPromo pomo";
-    promo2.promoRetailerLogo = [UIImage imageNamed:@"image2.jpg"];
-    [self.promoItems addObject:promo2];
-
-    PromoItem *promo3 = [[PromoItem alloc]init];
-    promo3.promoDescription = @"This is the description for promo 3. You can get this promotion by coming to the location and presenting your WinPromo pomo";
-    promo3.promoSummary = @"Promo 3";
-    UIImage *image = [UIImage imageNamed:@"image3.jpg"];
-    promo3.promoRetailerLogo = image;
-    [self.promoItems addObject:promo3];
-
+        //OLIV LOAD DATA FROM PARSE
+        PFQuery *query = [PFQuery queryWithClassName:@"Advertiser"];
+  
+    
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+    
+                for (PFObject *arr in objects) {
+                    NSLog(@"name = %@",[arr valueForKey:@"name"]);
+                }
+    
+                PFFile *logo = [[objects objectAtIndex:1] objectForKey:@"picture"];
+                [logo getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+    
+                    PromoItem *promo1 = [[PromoItem alloc]init];
+                    promo1.promoSummary = @"Promo1";
+                    promo1.promoRetailerLogo = [UIImage imageWithData:data];
+                    [self.promoItems addObject:promo1];
+                    
+                    //reload the data in the tableview
+                    [self.tableView reloadData];
+                }];
+    
+            } else {
+                NSLog(@"Error");
+            }
+            
+        }];
+    
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -77,17 +105,16 @@
 }
 
 
--(IBAction)unwindToList:(UIStoryboardSegue *)segue{
-    
-    AddPromoViewController *source = [segue sourceViewController];
-    PromoItem *promoItem = source.promoItem;
-    
-    if (promoItem != nil) {
-        [self.promoItems addObject:promoItem];
-        [self.tableView reloadData];
-    };
-}
-
+//-(IBAction)unwindToList:(UIStoryboardSegue *)segue{
+//    
+//    AddPromoViewController *source = [segue sourceViewController];
+//    PromoItem *promoItem = source.promoItem;
+//    
+//    if (promoItem != nil) {
+//        [self.promoItems addObject:promoItem];
+//        [self.tableView reloadData];
+//    };
+//}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -101,13 +128,13 @@
     [cell.imageView setFrame:CGRectMake(0, 0, 10, 10)];
     cell.imageView.image = promoItem.promoRetailerLogo;
 
- 
-    //DISPLAY ITEM COMPLETION STATE
-    if (promoItem.promoCompleted) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+
+//    DISPLAY ITEM COMPLETION STATE
+//    if (promoItem.promoCompleted) {
+//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//    } else {
+//        cell.accessoryType = UITableViewCellAccessoryNone;
+//    }
     
     return cell;
 }

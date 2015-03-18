@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
 
 @interface AppDelegate ()
 
@@ -19,8 +20,9 @@
     // Override point for customization after application launch.
     
     
-    
-    
+    // OLIV - ADDED PARSE PROJECT KEYS
+    [Parse setApplicationId:@"Vm9KcWeGwcnRfOBWOTufvgV2kEq6p8XtzkpmU4jV" clientKey:@"gJOCpmNspw0lThPH12KO8I6dZn2loaUFyDLm92a1"];
+
     return YES;
 }
 
