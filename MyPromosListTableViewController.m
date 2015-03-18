@@ -57,27 +57,36 @@
     
 
         //OLIV LOAD DATA FROM PARSE
-        PFQuery *query = [PFQuery queryWithClassName:@"Advertiser"];
+        PFQuery *query = [PFQuery queryWithClassName:@"Promo"];
   
     
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (!error) {
     
                 for (PFObject *arr in objects) {
-                    NSLog(@"name = %@",[arr valueForKey:@"name"]);
+                    NSLog(@"PromoSummary = %@",[arr valueForKey:@"title"]);
+                    NSLog(@"PromoDescription = %@",[arr valueForKey:@"description"]);
+
+                    PromoItem *promoItem = [[PromoItem alloc]init];
+                    promoItem.promoSummary = [arr valueForKey:@"title"];
+                    promoItem.promoDescription = [arr valueForKey:@"description"];
+
+                    [self.promoItems addObject:promoItem];
+                    [self.tableView reloadData];
+                    
                 }
     
-                PFFile *logo = [[objects objectAtIndex:1] objectForKey:@"picture"];
-                [logo getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-    
-                    PromoItem *promo1 = [[PromoItem alloc]init];
-                    promo1.promoSummary = @"Promo1";
-                    promo1.promoRetailerLogo = [UIImage imageWithData:data];
-                    [self.promoItems addObject:promo1];
-                    
-                    //reload the data in the tableview
-                    [self.tableView reloadData];
-                }]; 
+//                PFFile *logo = [[objects objectAtIndex:1] objectForKey:@"picture"];
+//                [logo getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+//    
+//                    PromoItem *promo1 = [[PromoItem alloc]init];
+//                    promo1.promoSummary = @"Promo1";
+//                    promo1.promoRetailerLogo = [UIImage imageWithData:data];
+//                    [self.promoItems addObject:promo1];
+//                    
+//                    //reload the data in the tableview
+//                    [self.tableView reloadData];
+//                }]; 
     
             } else {
                 NSLog(@"Error");
