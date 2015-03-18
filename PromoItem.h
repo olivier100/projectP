@@ -11,7 +11,7 @@
 
 @interface PromoItem : NSObject
 
-@property NSString *promoRetailer;
+@property NSString *promoRetailerName;
 @property NSString *promoRetailerType;
 @property UIImage *promoRetailerLogo;
 @property NSMutableArray *promoLocations;
@@ -22,6 +22,7 @@
 @property NSString *promoDescription;
 @property NSNumber *promoValue;
 @property NSDate *promoValidUntil;
+@property UIImage *promoImage;
 
 
 

@@ -34,64 +34,58 @@
 
 
 -(void)loadInitialData{
- 
-    //ADD ITEMS
-//    PromoItem *promo1 = [[PromoItem alloc]init];
-//    promo1.promoSummary = @"Promo 1";
-//    promo1.promoDescription = @"This is the description for promo 1. You can get this promotion by coming to the location and presenting your WinPromo pomo";
-//    promo1.promoRetailerLogo = [UIImage imageNamed:@"image1.png"];
-//    [self.promoItems addObject:promo1];
-//
-//    PromoItem *promo2 = [[PromoItem alloc]init];
-//    promo2.promoSummary = @"Promo 2";
-//    promo2.promoDescription = @"This is the description for promo 2. You can get this promotion by coming to the location and presenting your WinPromo pomo";
-//    promo2.promoRetailerLogo = [UIImage imageNamed:@"image2.jpg"];
-//    [self.promoItems addObject:promo2];
-//
-//    PromoItem *promo3 = [[PromoItem alloc]init];
-//    promo3.promoDescription = @"This is the description for promo 3. You can get this promotion by coming to the location and presenting your WinPromo pomo";
-//    promo3.promoSummary = @"Promo 3";
-//    UIImage *image = [UIImage imageNamed:@"image3.jpg"];
-//    promo3.promoRetailerLogo = image;
-//    [self.promoItems addObject:promo3];
     
+    //OLIV - LOAD DATA FROM PARSE
+    
+    //Create the PromoQuery linked to the Promo table in parse
+    PFQuery *promoQuery = [PFQuery queryWithClassName:@"Promo"];
 
-        //OLIV LOAD DATA FROM PARSE
-        PFQuery *query = [PFQuery queryWithClassName:@"Promo"];
-  
+    //Add the column making the connection to the Advertiser table
+    [promoQuery includeKey:@"AdvertiserID"];
     
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-    
-                for (PFObject *arr in objects) {
-
-                    PromoItem *promoItem = [[PromoItem alloc]init];
-                    promoItem.promoSummary = [arr valueForKey:@"title"];
-                    promoItem.promoDescription = [arr valueForKey:@"promoDescription"];
-                    promoItem.promoValue = [arr valueForKey:@"value"];
-
-                    [self.promoItems addObject:promoItem];
-                    [self.tableView reloadData];
-                    
-                }
-    
-//                PFFile *logo = [[objects objectAtIndex:1] objectForKey:@"picture"];
-//                [logo getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-//    
-//                    PromoItem *promo1 = [[PromoItem alloc]init];
-//                    promo1.promoSummary = @"Promo1";
-//                    promo1.promoRetailerLogo = [UIImage imageWithData:data];
-//                    [self.promoItems addObject:promo1];
-//                    
-//                    //reload the data in the tableview
-//                    [self.tableView reloadData];
-//                }]; 
-    
-            } else {
-                NSLog(@"Error");
-            }
+    //Parse method to download the tables
+    [promoQuery findObjectsInBackgroundWithBlock:^(NSArray *promoTableFromParse, NSError *error) {
+        
+        //Verify if there is no error
+        if (!error) {
             
-        }];
+            //only used to return each image in the objectAtIndex
+            int i = 0;
+            
+            //Convert every row from the Parse table into an Objective C object
+            for (PFObject *promo in promoTableFromParse) {
+                
+                //Initialise promo object
+                PromoItem *promoItem = [[PromoItem alloc]init];
+                
+                //fill the properties of the promo object
+                promoItem.promoRetailerName = [[promo valueForKey:@"AdvertiserID"]valueForKey:@"name"];
+                promoItem.promoSummary = [promo valueForKey:@"title"];
+                promoItem.promoDescription = [promo valueForKey:@"promoDescription"];
+                promoItem.promoValue = [promo valueForKey:@"value"];
+                NSLog(@"adv id: %@", [[promo valueForKey:@"AdvertiserID"]valueForKey:@"name"]);
+                
+                //method to load the image
+                PFFile *promoImage = [[promoTableFromParse objectAtIndex:i] objectForKey:@"promoImage"];
+                [promoImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                    promoItem.promoImage = [UIImage imageWithData:data];
+
+                    //reload the data in the tableview
+                    [self.tableView reloadData];
+                }];
+            
+            //add each object to the array
+            [self.promoItems addObject:promoItem];
+            [self.tableView reloadData];
+            i++;
+                    
+            }
+    
+        } else {
+            NSLog(@"Error");
+        }
+            
+    }];
     
 }
 
@@ -131,10 +125,10 @@
     
     // Configure the cell...
     PromoItem *promoItem = [self.promoItems objectAtIndex:indexPath.row];
-    cell.textLabel.text = promoItem.promoSummary;
-    cell.detailTextLabel.text = promoItem.promoDescription;
+    cell.textLabel.text = promoItem.promoRetailerName;
+    cell.detailTextLabel.text = promoItem.promoSummary;
     [cell.imageView setFrame:CGRectMake(0, 0, 10, 10)];
-    cell.imageView.image = promoItem.promoRetailerLogo;
+    cell.imageView.image = promoItem.promoImage;
 
 
 //    DISPLAY ITEM COMPLETION STATE
