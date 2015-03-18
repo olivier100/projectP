@@ -64,12 +64,11 @@
             if (!error) {
     
                 for (PFObject *arr in objects) {
-                    NSLog(@"PromoSummary = %@",[arr valueForKey:@"title"]);
-                    NSLog(@"PromoDescription = %@",[arr valueForKey:@"description"]);
 
                     PromoItem *promoItem = [[PromoItem alloc]init];
                     promoItem.promoSummary = [arr valueForKey:@"title"];
-                    promoItem.promoDescription = [arr valueForKey:@"description"];
+                    promoItem.promoDescription = [arr valueForKey:@"promoDescription"];
+                    promoItem.promoValue = [arr valueForKey:@"value"];
 
                     [self.promoItems addObject:promoItem];
                     [self.tableView reloadData];
