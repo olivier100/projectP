@@ -41,7 +41,7 @@
     PFQuery *promoQuery = [PFQuery queryWithClassName:@"Promo"];
 
     //Add the column making the connection to the Advertiser table
-    [promoQuery includeKey:@"AdvertiserID"];
+    [promoQuery includeKey:@"advertiserID"];
     
     //Parse method to download the tables
     [promoQuery findObjectsInBackgroundWithBlock:^(NSArray *promoTableFromParse, NSError *error) {
@@ -59,11 +59,10 @@
                 PromoItem *promoItem = [[PromoItem alloc]init];
                 
                 //fill the properties of the promo object
-                promoItem.promoRetailerName = [[promo valueForKey:@"AdvertiserID"]valueForKey:@"name"];
-                promoItem.promoSummary = [promo valueForKey:@"title"];
+                promoItem.promoRetailerName = [[promo valueForKey:@"advertiserID"]valueForKey:@"advertiserName"];
+                promoItem.promoSummary = [promo valueForKey:@"promoSummary"];
                 promoItem.promoDescription = [promo valueForKey:@"promoDescription"];
-                promoItem.promoValue = [promo valueForKey:@"value"];
-                NSLog(@"adv id: %@", [[promo valueForKey:@"AdvertiserID"]valueForKey:@"name"]);
+                promoItem.promoValue = [promo valueForKey:@"promoValueAmount"];
                 
                 //method to load the image
                 PFFile *promoImage = [[promoTableFromParse objectAtIndex:i] objectForKey:@"promoImage"];
