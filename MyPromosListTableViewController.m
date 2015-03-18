@@ -77,7 +77,7 @@
                     
                     //reload the data in the tableview
                     [self.tableView reloadData];
-                }];
+                }]; 
     
             } else {
                 NSLog(@"Error");
