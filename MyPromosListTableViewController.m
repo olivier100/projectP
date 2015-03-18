@@ -60,9 +60,15 @@
                 
                 //fill the properties of the promo object
                 promoItem.promoRetailerName = [[promo valueForKey:@"advertiserID"]valueForKey:@"advertiserName"];
+                promoItem.promoRetailerType = [[promo valueForKey:@"advertiserID"]valueForKey:@"advertiserType"];
+                promoItem.promoRetailerURL = [[promo valueForKey:@"advertiserID"]valueForKey:@"advertiserURL"];
+                promoItem.promoRetailerTelephone = [[promo valueForKey:@"advertiserID"]valueForKey:@"advertiserTelephone"];
+
                 promoItem.promoSummary = [promo valueForKey:@"promoSummary"];
                 promoItem.promoDescription = [promo valueForKey:@"promoDescription"];
-                promoItem.promoValue = [promo valueForKey:@"promoValueAmount"];
+                promoItem.promoValueAmount = (NSString*)[promo valueForKey:@"promoValueAmount"];    //??? how to cast?
+                promoItem.promoValidUntil = [promo valueForKey:@"promoValidUntil"]; //??? how to cast?
+                
                 
                 //method to load the image
                 PFFile *promoImage = [[promoTableFromParse objectAtIndex:i] objectForKey:@"promoImage"];

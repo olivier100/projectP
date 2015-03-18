@@ -14,15 +14,15 @@
 @property NSString *promoRetailerName;
 @property NSString *promoRetailerType;
 @property UIImage *promoRetailerLogo;
-@property NSMutableArray *promoLocations;
 @property NSURL *promoRetailerURL;
 @property NSString *promoRetailerTelephone;
 
 @property NSString *promoSummary;
 @property NSString *promoDescription;
-@property NSNumber *promoValue;
+@property NSNumber *promoValueAmount;
 @property NSDate *promoValidUntil;
 @property UIImage *promoImage;
+@property NSMutableArray *promoLocations;
 
 
 
