@@ -7,8 +7,10 @@
 //
 
 #import "PromoDetailsViewController.h"
+#import <WebKit/WebKit.h>
 
-@interface PromoDetailsViewController ()
+@interface PromoDetailsViewController () 
+
 @property (weak, nonatomic) IBOutlet UILabel *promoSummaryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promoDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *promoRetailerLogoUIImageView;
@@ -19,7 +21,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *promoRetailerURLLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promoRetailerTelephoneLabel;
 
+//FOR WebView
 @property (weak, nonatomic) IBOutlet UIWebView *gameUIWebView;
+
+//FOR WKWebView
+@property(strong,nonatomic) WKWebView *gameWKwebView;
 
 @end
 
@@ -40,13 +46,30 @@
 //    self.promoValueAmountLabel.text = (NSString*)self.promoItem.promoValueAmount; //??? how to cast?
 
     //IMPLEMENTING UIWEBVIEW
-    NSURL *url = [NSURL URLWithString:@"http://www.netsolitaire.com/"];
+//    NSURL *url = [NSURL URLWithString:@"http://www.netsolitaire.com/"];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    [_gameUIWebView loadRequest:request];
+    
+    //LOAD INTERNAL GAME USING WebView
+//    NSString *gamePath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"CrappyBird-master"];
+//    NSURL *url = [NSURL fileURLWithPath:gamePath];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    [_gameUIWebView loadRequest:request];
+   
+    //LOAD INTERNAL GAME USING WKWebView
+    NSString *gamePath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"CrappyBird-master"];
+    NSURL *url = [NSURL fileURLWithPath:gamePath];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [_gameUIWebView loadRequest:request];
+    _gameWKwebView = [[WKWebView alloc] initWithFrame:self.view.frame];
+    [_gameWKwebView loadRequest:request];
     
+    _gameWKwebView.frame = CGRectMake(0, 300, self.view.frame.size.width, self.view.frame.size.height/2);
+    [self.view addSubview:_gameWKwebView];
     
+    //EVALUATE SCORE OF THE GAME
     
 }
+
 
 -(void)viewDidAppear:(BOOL)animated{
 }
@@ -55,6 +78,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 
 
