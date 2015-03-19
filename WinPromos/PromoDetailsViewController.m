@@ -86,10 +86,18 @@
     NSLog(@"Received event %@", message.body);
     self.gameScore = message.body;
     self.gameScoreLabel.text = self.gameScore.stringValue;
+    
+    //CALL THE SLOT MACHINE
+    
+    if ([self.gameScore integerValue] >=1) {
+        [self.gameWKwebView removeFromSuperview];
+        NSString *gamePath =[[NSBundle mainBundle]pathForResource:@"index" ofType:@"html" inDirectory:@"SlotMachine"];
+        NSURL *url = [NSURL fileURLWithPath:gamePath];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [_gameUIWebView loadRequest:request];
+    }
 
 }
-
-
 
 
 -(void)viewDidAppear:(BOOL)animated{

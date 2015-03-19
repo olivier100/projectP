@@ -18,6 +18,7 @@
 		0933157B1AB713070083F111 /* PromoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0933157A1AB713070083F111 /* PromoItem.m */; };
 		0933157F1AB739D50083F111 /* PromoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0933157E1AB739D50083F111 /* PromoDetailsViewController.m */; };
 		097A2C241ABAC99800DE5C81 /* CrappyBird-master in Resources */ = {isa = PBXBuildFile; fileRef = 097A2C231ABAC99800DE5C81 /* CrappyBird-master */; };
+		097A2C261ABB1D8D00DE5C81 /* SlotMachine in Resources */ = {isa = PBXBuildFile; fileRef = 097A2C251ABB1D8D00DE5C81 /* SlotMachine */; };
 		098054321AB86976002176B1 /* image1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0980542D1AB86976002176B1 /* image1.png */; };
 		098054331AB86976002176B1 /* image2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0980542E1AB86976002176B1 /* image2.jpg */; };
 		098054341AB86976002176B1 /* image3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0980542F1AB86976002176B1 /* image3.jpg */; };
@@ -57,6 +58,7 @@
 		0933157D1AB739D50083F111 /* PromoDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromoDetailsViewController.h; path = WinPromos/PromoDetailsViewController.h; sourceTree = "<group>"; };
 		0933157E1AB739D50083F111 /* PromoDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PromoDetailsViewController.m; path = WinPromos/PromoDetailsViewController.m; sourceTree = "<group>"; };
 		097A2C231ABAC99800DE5C81 /* CrappyBird-master */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "CrappyBird-master"; sourceTree = "<group>"; };
+		097A2C251ABB1D8D00DE5C81 /* SlotMachine */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SlotMachine; sourceTree = "<group>"; };
 		0980542D1AB86976002176B1 /* image1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image1.png; sourceTree = "<group>"; };
 		0980542E1AB86976002176B1 /* image2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image2.jpg; sourceTree = "<group>"; };
 		0980542F1AB86976002176B1 /* image3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image3.jpg; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		0933154C1AB6F11E0083F111 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				097A2C251ABB1D8D00DE5C81 /* SlotMachine */,
 				097A2C231ABAC99800DE5C81 /* CrappyBird-master */,
 				0933154D1AB6F11E0083F111 /* Info.plist */,
 				0933154E1AB6F11E0083F111 /* main.m */,
@@ -282,6 +285,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				097A2C261ABB1D8D00DE5C81 /* SlotMachine in Resources */,
 				093315581AB6F11E0083F111 /* Main.storyboard in Resources */,
 				098054361AB86976002176B1 /* image5.jpg in Resources */,
 				098054331AB86976002176B1 /* image2.jpg in Resources */,
