@@ -9,7 +9,7 @@
 #import "PromoDetailsViewController.h"
 #import <WebKit/WebKit.h>
 
-@interface PromoDetailsViewController () 
+@interface PromoDetailsViewController () <WKScriptMessageHandler> //TRIAL
 
 @property (weak, nonatomic) IBOutlet UILabel *promoSummaryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promoDescriptionLabel;
@@ -45,18 +45,18 @@
 //    self.promoValideUntilLabel.text = self.promoItem.promoValidUntil;   //??? how to cast?
 //    self.promoValueAmountLabel.text = (NSString*)self.promoItem.promoValueAmount; //??? how to cast?
 
-    //IMPLEMENTING UIWEBVIEW
+//    OPTION 1 - WEBVIEW - implementing WebView
 //    NSURL *url = [NSURL URLWithString:@"http://www.netsolitaire.com/"];
 //    NSURLRequest *request = [NSURLRequest requestWithURL:url];
 //    [_gameUIWebView loadRequest:request];
-    
-    //LOAD INTERNAL GAME USING WebView
+//    
+//    OPTION 1 - WEBVIEW - Load internal game using webview
 //    NSString *gamePath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"CrappyBird-master"];
 //    NSURL *url = [NSURL fileURLWithPath:gamePath];
 //    NSURLRequest *request = [NSURLRequest requestWithURL:url];
 //    [_gameUIWebView loadRequest:request];
-   
-    //LOAD INTERNAL GAME USING WKWebView
+    
+    //OPTION 2 - WKWEBVIEW - Implement WkWebView and load internal game
     NSString *gamePath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"CrappyBird-master"];
     NSURL *url = [NSURL fileURLWithPath:gamePath];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -66,9 +66,20 @@
     _gameWKwebView.frame = CGRectMake(0, 300, self.view.frame.size.width, self.view.frame.size.height/2);
     [self.view addSubview:_gameWKwebView];
     
-    //EVALUATE SCORE OF THE GAME
     
 }
+
+
+//  TRIAL - TRYING TO PASS DATA FROM THE GAME TO XCODE
+//  Since ViewController is a WKScriptMessageHandler, as declared in the ViewController interface, it must implement the userContentController:didReceiveScriptMessage method. This is the method that is triggered each time 'interOp' is sent a message from the JavaScript code.
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
+    NSDictionary *sentData = (NSDictionary*)message.body;
+    long aCount = [sentData[@"count"] integerValue];
+    aCount++;
+    [_gameWKwebView evaluateJavaScript:[NSString stringWithFormat:@"storeAndShow(%ld)", aCount] completionHandler:nil];
+}
+
+
 
 
 -(void)viewDidAppear:(BOOL)animated{
