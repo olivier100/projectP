@@ -15,10 +15,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *promoValideUntilLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promoValueAmountLabel;
 
-
 @property (weak, nonatomic) IBOutlet UILabel *promoRetailerName;
 @property (weak, nonatomic) IBOutlet UILabel *promoRetailerURLLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promoRetailerTelephoneLabel;
+
+@property (weak, nonatomic) IBOutlet UIWebView *gameUIWebView;
 
 @end
 
@@ -38,6 +39,11 @@
 //    self.promoValideUntilLabel.text = self.promoItem.promoValidUntil;   //??? how to cast?
 //    self.promoValueAmountLabel.text = (NSString*)self.promoItem.promoValueAmount; //??? how to cast?
 
+    //IMPLEMENTING UIWEBVIEW
+    NSURL *url = [NSURL URLWithString:@"http://www.netsolitaire.com/"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [_gameUIWebView loadRequest:request];
+    
     
     
 }
