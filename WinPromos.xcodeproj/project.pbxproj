@@ -24,6 +24,7 @@
 		098054341AB86976002176B1 /* image3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0980542F1AB86976002176B1 /* image3.jpg */; };
 		098054351AB86976002176B1 /* image4.png in Resources */ = {isa = PBXBuildFile; fileRef = 098054301AB86976002176B1 /* image4.png */; };
 		098054361AB86976002176B1 /* image5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 098054311AB86976002176B1 /* image5.jpg */; };
+		09F31B421ABB91D80019B89D /* MyWinsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F31B411ABB91D80019B89D /* MyWinsTableViewController.m */; };
 		30F2AFC955B5793AD5647EA5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A676B11CF815CD5717AF62F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,8 @@
 		0980542F1AB86976002176B1 /* image3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image3.jpg; sourceTree = "<group>"; };
 		098054301AB86976002176B1 /* image4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image4.png; sourceTree = "<group>"; };
 		098054311AB86976002176B1 /* image5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image5.jpg; sourceTree = "<group>"; };
+		09F31B401ABB91D80019B89D /* MyWinsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWinsTableViewController.h; sourceTree = "<group>"; };
+		09F31B411ABB91D80019B89D /* MyWinsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWinsTableViewController.m; sourceTree = "<group>"; };
 		4A676B11CF815CD5717AF62F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BB66B8A3F371D06BCA4A255 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F857312744A04E821A4EBB95 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -161,6 +164,8 @@
 				093315771AB7039F0083F111 /* MyPromosListTableViewController.m */,
 				0933157D1AB739D50083F111 /* PromoDetailsViewController.h */,
 				0933157E1AB739D50083F111 /* PromoDetailsViewController.m */,
+				09F31B401ABB91D80019B89D /* MyWinsTableViewController.h */,
+				09F31B411ABB91D80019B89D /* MyWinsTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -348,6 +353,7 @@
 				093315521AB6F11E0083F111 /* AppDelegate.m in Sources */,
 				093315741AB701A20083F111 /* AddPromoViewController.m in Sources */,
 				0933154F1AB6F11E0083F111 /* main.m in Sources */,
+				09F31B421ABB91D80019B89D /* MyWinsTableViewController.m in Sources */,
 				0933157F1AB739D50083F111 /* PromoDetailsViewController.m in Sources */,
 				0933157B1AB713070083F111 /* PromoItem.m in Sources */,
 				093315781AB7039F0083F111 /* MyPromosListTableViewController.m in Sources */,
