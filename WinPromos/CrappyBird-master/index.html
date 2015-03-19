@@ -788,6 +788,11 @@
 				  medal = "gold";
 			   if(score >= 40)
 				  medal = "platinum";
+
+            //OLIV inserting message to communicate with Objective C
+            window.webkit.messageHandlers.observeHandler.postMessage(score);
+                  
+
 			
 				return medal;
 			}

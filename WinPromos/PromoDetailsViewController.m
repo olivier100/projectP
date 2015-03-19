@@ -26,6 +26,8 @@
 
 //FOR WKWebView
 @property(strong,nonatomic) WKWebView *gameWKwebView;
+@property (weak, nonatomic) IBOutlet UILabel *gameScoreLabel;
+@property (strong, nonatomic) NSNumber *gameScore;
 
 @end
 
@@ -44,6 +46,7 @@
     self.promoRetailerLogoUIImageView.image = self.promoItem.promoImage;
 //    self.promoValideUntilLabel.text = self.promoItem.promoValidUntil;   //??? how to cast?
 //    self.promoValueAmountLabel.text = (NSString*)self.promoItem.promoValueAmount; //??? how to cast?
+    
 
 //    OPTION 1 - WEBVIEW - implementing WebView
 //    NSURL *url = [NSURL URLWithString:@"http://www.netsolitaire.com/"];
@@ -56,11 +59,19 @@
 //    NSURLRequest *request = [NSURLRequest requestWithURL:url];
 //    [_gameUIWebView loadRequest:request];
     
+
+    //OPTION 2 - WKWEBVIEW - Setting the up WkWebKit Configuration and Controller to be able to use the "didReceiveScriptMessage" method
+    WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc]init];
+    WKUserContentController *controller = [[WKUserContentController alloc]init];
+    [controller addScriptMessageHandler:self name:@"observeHandler"];
+    configuration.userContentController = controller;
+    _gameWKwebView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:configuration];
+
     //OPTION 2 - WKWEBVIEW - Implement WkWebView and load internal game
     NSString *gamePath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"CrappyBird-master"];
     NSURL *url = [NSURL fileURLWithPath:gamePath];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    _gameWKwebView = [[WKWebView alloc] initWithFrame:self.view.frame];
+//    _gameWKwebView = [[WKWebView alloc] initWithFrame:self.view.frame];
     [_gameWKwebView loadRequest:request];
     
     _gameWKwebView.frame = CGRectMake(0, 300, self.view.frame.size.width, self.view.frame.size.height/2);
@@ -70,13 +81,12 @@
 }
 
 
-//  TRIAL - TRYING TO PASS DATA FROM THE GAME TO XCODE
-//  Since ViewController is a WKScriptMessageHandler, as declared in the ViewController interface, it must implement the userContentController:didReceiveScriptMessage method. This is the method that is triggered each time 'interOp' is sent a message from the JavaScript code.
+//  OPTION 2 - GETTING RESULT FROM THE HTML GAME
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
-    NSDictionary *sentData = (NSDictionary*)message.body;
-    long aCount = [sentData[@"count"] integerValue];
-    aCount++;
-    [_gameWKwebView evaluateJavaScript:[NSString stringWithFormat:@"storeAndShow(%ld)", aCount] completionHandler:nil];
+    NSLog(@"Received event %@", message.body);
+    self.gameScore = message.body;
+    self.gameScoreLabel.text = self.gameScore.stringValue;
+
 }
 
 
