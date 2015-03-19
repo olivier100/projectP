@@ -8,6 +8,7 @@
 
 #import "PromoDetailsViewController.h"
 #import <WebKit/WebKit.h>
+#import <Parse/Parse.h>
 
 @interface PromoDetailsViewController () <WKScriptMessageHandler> //TRIAL
 
@@ -44,8 +45,8 @@
     self.promoSummaryLabel.text = self.promoItem.promoSummary;
     self.promoDescriptionLabel.text = self.promoItem.promoDescription;
     self.promoRetailerLogoUIImageView.image = self.promoItem.promoImage;
-//    self.promoValideUntilLabel.text = self.promoItem.promoValidUntil;   //??? how to cast?
-//    self.promoValueAmountLabel.text = (NSString*)self.promoItem.promoValueAmount; //??? how to cast?
+    self.promoValideUntilLabel.text = [NSString stringWithFormat:@"%@",self.promoItem.promoValidUntil];
+    self.promoValueAmountLabel.text = [NSString stringWithFormat:@"%lu",self.promoItem.promoValueAmount];
     
 
 //    OPTION 1 - WEBVIEW - implementing WebView
@@ -86,6 +87,31 @@
     NSLog(@"Received event %@", message.body);
     self.gameScore = message.body;
     self.gameScoreLabel.text = self.gameScore.stringValue;
+    
+    //PARSE - SAVING USER REFERENCES AND PROMO WINS
+
+        PFObject *promoUser = [PFObject objectWithClassName:@"PromoUser"];
+        promoUser[@"userEmail"] = @"aaa@aaa.com";
+    
+        //PARSE - save game result and userEmail to parse PromoWinner table
+        PFObject *promoWinnerTableInParse = [PFObject objectWithClassName:@"PromoWinner"];
+        promoWinnerTableInParse[@"testColumn"] = self.gameScore.stringValue;
+        promoWinnerTableInParse[@"score"] = self.gameScore;
+        promoWinnerTableInParse[@"userEmail"] = promoUser;
+//        promoWinnerTableInParse[@"promoID"] = @"";
+
+        [promoWinnerTableInParse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                // The object has been saved.
+                NSLog(@"Result saved to parse");
+            } else {
+                // There was a problem, check error.description
+                NSLog(@"Parse saving FAILURE");
+
+            }
+        }];
+
+    
     
     //CALL THE SLOT MACHINE
     

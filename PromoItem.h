@@ -19,7 +19,7 @@
 
 @property NSString *promoSummary;
 @property NSString *promoDescription;
-@property NSNumber *promoValueAmount;
+@property NSInteger *promoValueAmount;
 @property NSDate *promoValidUntil;
 @property UIImage *promoImage;
 @property NSMutableArray *promoLocations;

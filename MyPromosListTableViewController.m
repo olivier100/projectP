@@ -66,7 +66,7 @@
 
                 promoItem.promoSummary = [promo valueForKey:@"promoSummary"];
                 promoItem.promoDescription = [promo valueForKey:@"promoDescription"];
-                promoItem.promoValueAmount = (NSString*)[promo valueForKey:@"promoValueAmount"];    //??? how to cast?
+                promoItem.promoValueAmount = [[promo valueForKey:@"promoValueAmount"] integerValue];    //??? how to cast?
                 promoItem.promoValidUntil = [promo valueForKey:@"promoValidUntil"]; //??? how to cast?
                 
                 
