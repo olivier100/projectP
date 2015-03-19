@@ -24,6 +24,7 @@
 @property UIImage *promoImage;
 @property NSMutableArray *promoLocations;
 
+@property NSString *promoObjectId; //to contain the unique reference created from Parse
 
 
 @property BOOL promoCompleted;

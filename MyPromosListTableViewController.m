@@ -68,7 +68,8 @@
                 promoItem.promoDescription = [promo valueForKey:@"promoDescription"];
                 promoItem.promoValueAmount = [[promo valueForKey:@"promoValueAmount"] integerValue];    //??? how to cast?
                 promoItem.promoValidUntil = [promo valueForKey:@"promoValidUntil"]; //??? how to cast?
-                
+                promoItem.promoObjectId = [promo valueForKey:@"objectId"];
+
                 
                 //method to load the image
                 PFFile *promoImage = [[promoTableFromParse objectAtIndex:i] objectForKey:@"promoImage"];

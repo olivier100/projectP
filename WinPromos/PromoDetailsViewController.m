@@ -89,30 +89,36 @@
     self.gameScoreLabel.text = self.gameScore.stringValue;
     
     //PARSE - SAVING USER REFERENCES AND PROMO WINS
-
+    
+        //Step 1 - Create promoUser object what will contain the unique reference
         PFObject *promoUser = [PFObject objectWithClassName:@"PromoUser"];
         promoUser[@"userEmail"] = @"aaa@aaa.com";
     
-        //PARSE - save game result and userEmail to parse PromoWinner table
-        PFObject *promoWinnerTableInParse = [PFObject objectWithClassName:@"PromoWinner"];
-        promoWinnerTableInParse[@"testColumn"] = self.gameScore.stringValue;
-        promoWinnerTableInParse[@"score"] = self.gameScore;
-        promoWinnerTableInParse[@"userEmail"] = promoUser;
-//        promoWinnerTableInParse[@"promoID"] = @"";
-
-        [promoWinnerTableInParse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                // The object has been saved.
-                NSLog(@"Result saved to parse");
-            } else {
-                // There was a problem, check error.description
-                NSLog(@"Parse saving FAILURE");
-
-            }
+        // Create a query to retrieve the Parse promo object property "objectId"
+        PFQuery *promoQuery = [PFQuery queryWithClassName:@"Promo"];
+        [promoQuery whereKey:@"objectId" equalTo:self.promoItem.promoObjectId];
+    
+        //Once the ObjectId has been retrieved, update the Parse promoWinner table within the block below
+        [promoQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+            //PARSE - save game result and userEmail to parse PromoWinner table
+            PFObject *promoWinnerTableInParse = [PFObject objectWithClassName:@"PromoWinner"];
+            promoWinnerTableInParse[@"score"] = self.gameScore;
+            promoWinnerTableInParse[@"userEmail"] = promoUser;
+            promoWinnerTableInParse[@"promoID"] = [objects firstObject];
+        
+            [promoWinnerTableInParse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (succeeded) {
+                    // The object has been saved.
+                    NSLog(@"Result saved to parse");
+                } else {
+                    // There was a problem, check error.description
+                    NSLog(@"Parse saving FAILURE");
+                }
+            }];
+        
         }];
-
-    
-    
+     
     //CALL THE SLOT MACHINE
     
     if ([self.gameScore integerValue] >=1) {
@@ -122,6 +128,7 @@
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [_gameUIWebView loadRequest:request];
     }
+
 
 }
 
