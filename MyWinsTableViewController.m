@@ -87,6 +87,12 @@
     }];
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [self.promoItems removeAllObjects];
+    [self loadInitialData];
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
