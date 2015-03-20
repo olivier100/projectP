@@ -13,5 +13,4 @@
 
 @property (strong, nonatomic) PromoItem *promoItemWin;
 
-
 @end

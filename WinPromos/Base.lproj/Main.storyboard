@@ -470,9 +470,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f3g-1S-dYQ">
-                                <rect key="frame" x="245" y="418" width="110" height="30"/>
+                                <rect key="frame" x="245" y="418" width="115" height="30"/>
                                 <color key="backgroundColor" red="0.40000000596046448" green="0.40000000596046448" blue="1" alpha="0.22" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Promo obtained">
+                                <state key="normal" title="Promo Collected">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>

@@ -31,15 +31,22 @@
 
 -(void)loadInitialData{
 
-    //OLIV - LOAD DATA FROM PARSE
+    //PARSE GET - LOAD DATA FROM PARSE
     
     //Create the PromoQuery linked to the PromoWinner table in parse
     PFQuery *myWinsQuery = [PFQuery queryWithClassName:@"PromoWinner"];
     
-    //Add the column making the connection to the PromoTable and to the AdvertiserTable which ID is in the PromoTable
-        [myWinsQuery includeKey:@"promoID.advertiserID"];
+    //exclude items with "true" in the promoCollected field
+    BOOL collected = true;
+    [myWinsQuery whereKey:@"promoCollected" notEqualTo:[NSNumber numberWithBool:collected]];
+    
+    //We need to get the Retailer Name which is two tables away
+    //To do this we say, go to "Promo" table using "promoID" and then go to "Advertisers" table using "advertiserID"
+    //We can now retrieve the Retailer name using this path -> "PromoWinner" -> "Promo" -> "Advertisers"
+    [myWinsQuery includeKey:@"promoID.advertiserID"];
     
     //Parse method to download the tables
+    //It says, execute the following with the objects from this query
     [myWinsQuery findObjectsInBackgroundWithBlock:^(NSArray *promoWinnerTableFromParse, NSError *error) {
         
         //Verify if there is no error

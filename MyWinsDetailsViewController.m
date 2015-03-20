@@ -33,12 +33,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
+    //PAINT DETAIL VIEW
+    
+    //with properties related to RETAILER
     self.promoRetailerName.text = self.promoItemWin.promoRetailerName;
     self.promoRetailerURLLabel.text = (NSString*)self.promoItemWin.promoRetailerURL;
     self.promoRetailerTelephoneLabel.text = self.promoItemWin.promoRetailerTelephone;
     
+    //with properties related to PROMOITEM
     self.promoSummaryLabel.text = self.promoItemWin.promoSummary;
     self.promoDescriptionLabel.text = self.promoItemWin.promoDescription;
     self.promoRetailerLogoUIImageView.image = self.promoItemWin.promoImage;
@@ -64,25 +67,26 @@
 - (IBAction)deleteWinPromoButton:(id)sender {
     
     
-    // Create a query to retrieve the Parse promo object property "objectId"
+    // PARSE GET - CREATE A QUERY TO RETRIEVE/AND FLAG PROMOITEMS WHICH HAVE BEEN COLLECTED
+    
+    //Create a query to retrieve the Parse promo object property "objectId"
     PFQuery *promoQuery = [PFQuery queryWithClassName:@"PromoWinner"];
     [promoQuery whereKey:@"objectId" equalTo:self.promoItemWin.promoObjectId];
     
-    NSLog(@"objectID = %@",self.promoItemWin.promoObjectId);
-    NSLog(@"promoQuery = %@",promoQuery.description);
-
+        //print the object from this query
+        NSLog(@"objectID = %@",self.promoItemWin.promoObjectId);
+        NSLog(@"promoQuery = %@",promoQuery.description);
     
-    //Once the ObjectId has been retrieved, update the Parse promoWinner table within the block below
+    //Once the ObjectId has been retrieved, update it with a TRUE in the Parse promoWinner table within the block below
     [promoQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
       
-        //PARSE - save the collected in the PromoWinner parse table to the right user line
+        //PARSE SET - save the collected in the PromoWinner parse table to the right user line
         PFObject *promoItem = [objects firstObject];
         BOOL collected = true;
         promoItem[@"promoCollected"] = [NSNumber numberWithBool:collected];
         
         [promoItem saveEventually];
 
-        
     }];
     
 }

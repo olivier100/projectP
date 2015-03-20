@@ -84,17 +84,24 @@
 }
 
 
-//  OPTION 2 - GETTING RESULT FROM THE HTML GAME
+// OPTION 2 -
+// (1) GETTING RESULT FROM THE HTML
+// (2) RUN SLOT MACHINE IF GAME SUCCESS
+// (3) TELL PARSE THAT THIS USER HAS WON THE PROMO
+
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
+    
+    
+    // (1) GETTING RESULT FROM THE HTML
     NSLog(@"Received event %@", message.body);
     self.gameScore = message.body;
     self.gameScoreLabel.text = self.gameScore.stringValue;
     
-    //IF GAME SUCCESSFUL CALL SLOT MACHINE AND SAVE TO PARSE
     
-    int minScoreSuccess = 1;
+    // (2) RUN SLOT MACHINE IF GAME SUCCESS
     
-    // GAME SUCCESS -> CALLING SLOT MACHINE
+    int minScoreSuccess = 0;
+    
     if ([self.gameScore integerValue] >=minScoreSuccess ) {
         
         [self.gameWKwebView removeFromSuperview];
@@ -103,12 +110,11 @@
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [_gameUIWebView loadRequest:request];
     
-    
-    //PARSE - SAVING USER REFERENCES AND PROMO WINS
+     
+        
+    // (3) TELL PARSE THAT THIS USER HAS WON THE PROMO
     
         //Step 1 - Create promoUser object what will contain the unique reference
-        PFObject *promoUser = [PFObject objectWithClassName:@"PromoUser"];
-        promoUser[@"userEmail"] = @"aaa@aaa.com";
     
         // Create a query to retrieve the Parse promo object property "objectId"
         PFQuery *promoQuery = [PFQuery queryWithClassName:@"Promo"];
@@ -117,26 +123,34 @@
         //Once the ObjectId has been retrieved, update the Parse promoWinner table within the block below
         [promoQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
-            //PARSE - save game result and userEmail to parse PromoWinner table
-            PFObject *promoWinnerTableInParse = [PFObject objectWithClassName:@"PromoWinner"];
-            promoWinnerTableInParse[@"score"] = self.gameScore;
-            promoWinnerTableInParse[@"userEmail"] = promoUser;
-            promoWinnerTableInParse[@"promoID"] = [objects firstObject];
-        
-            [promoWinnerTableInParse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (succeeded) {
-                    // The object has been saved.
-                    NSLog(@"Result saved to parse");
-                } else {
-                    // There was a problem, check error.description
-                    NSLog(@"Parse saving FAILURE");
-                }
-            }];
-        
-        }];
-    };
-}
+// STUCK
+// WANT TO SAVE OJECTID FROM THE USER TABLE INTO THE PROMOWINNER TABLE
+// THIS REQUIRES QUERYING THE USER TABLE TO GET THE OBJECTID - THE OBJECTID IS OBTAINED WITHIN THE EXECUTION BLOCK. I THEREFORE HAVE TO EMBED ALL YET ANOTHER BLOCK INTO THE EXISTING BLOCKS AND IT DID NOT WORK
+//            PARSE - save game result and userEmail to parse PromoWinner table
+//            PFQuery *promoUserQuery = [PFQuery queryWithClassName:@"PromoUser"];
+//            [promoUserQuery whereKey:@"userEmail" equalTo:@"aaa@aaa.com"];
+//            [promoUserQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//                
+//             }];
+            
+                PFObject *promoWinnerTableInParse = [PFObject objectWithClassName:@"PromoWinner"];
+                promoWinnerTableInParse[@"score"] = self.gameScore;
+                //            promoWinnerTableInParse[@"userEmail"] = [promoUserQuery fir"];
+                promoWinnerTableInParse[@"promoID"] = [objects firstObject];
+                
+                [promoWinnerTableInParse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (succeeded) {
+                        // The object has been saved.
+                        NSLog(@"Result saved to parse");
+                    } else {
+                        // There was a problem, check error.description
+                        NSLog(@"Parse saving FAILURE");
+                    }
+                }];
 
+        }];
+    }
+}
 
 -(void)viewDidAppear:(BOOL)animated{
 }
