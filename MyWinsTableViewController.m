@@ -9,6 +9,7 @@
 #import "MyWinsTableViewController.h"
 #import <Parse/Parse.h>
 #import "PromoItem.h"
+#import "MyWinsDetailsViewController.h"
 
 @interface MyWinsTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -68,7 +69,7 @@
                 [promoImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
                 promoItem.promoImage = [UIImage imageWithData:data];
                 
-                                    //reload the data in the tableview
+                //reload the data in the tableview
                 [self.tableView reloadData];
                 }];
                 
@@ -152,14 +153,22 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+ 
+        MyWinsDetailsViewController *MyWinsDetailViewController = [segue destinationViewController];
+ 
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        PromoItem *promoItem = [[PromoItem alloc]init];
+        promoItem = self.promoItems[indexPath.row];
+        MyWinsDetailViewController.promoItemWin = promoItem;
+    
 }
-*/
+
 
 @end

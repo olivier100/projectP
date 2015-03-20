@@ -12,12 +12,14 @@
 
 @interface PromoDetailsViewController () <WKScriptMessageHandler> //TRIAL
 
+//Properties specific to the PROMO
 @property (weak, nonatomic) IBOutlet UILabel *promoSummaryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promoDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *promoRetailerLogoUIImageView;
 @property (weak, nonatomic) IBOutlet UILabel *promoValideUntilLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promoValueAmountLabel;
 
+//Properties specific to the RETAILER
 @property (weak, nonatomic) IBOutlet UILabel *promoRetailerName;
 @property (weak, nonatomic) IBOutlet UILabel *promoRetailerURLLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promoRetailerTelephoneLabel;
