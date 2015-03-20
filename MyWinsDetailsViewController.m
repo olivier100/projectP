@@ -7,6 +7,7 @@
 //
 
 #import "MyWinsDetailsViewController.h"
+#import <Parse/Parse.h>
 
 @interface MyWinsDetailsViewController ()
 
@@ -22,6 +23,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *promoRetailerName;
 @property (weak, nonatomic) IBOutlet UILabel *promoRetailerURLLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promoRetailerTelephoneLabel;
+
+//Retailer button to delete a promoItem from the Win screen
+- (IBAction)deleteWinPromoButton:(id)sender;
 
 @end
 
@@ -57,4 +61,29 @@
 }
 */
 
+- (IBAction)deleteWinPromoButton:(id)sender {
+    
+    
+    // Create a query to retrieve the Parse promo object property "objectId"
+    PFQuery *promoQuery = [PFQuery queryWithClassName:@"PromoWinner"];
+    [promoQuery whereKey:@"objectId" equalTo:self.promoItemWin.promoObjectId];
+    
+    NSLog(@"objectID = %@",self.promoItemWin.promoObjectId);
+    NSLog(@"promoQuery = %@",promoQuery.description);
+
+    
+    //Once the ObjectId has been retrieved, update the Parse promoWinner table within the block below
+    [promoQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+      
+        //PARSE - save the collected in the PromoWinner parse table to the right user line
+        PFObject *promoItem = [objects firstObject];
+        BOOL collected = true;
+        promoItem[@"promoCollected"] = [NSNumber numberWithBool:collected];
+        
+        [promoItem saveEventually];
+
+        
+    }];
+    
+}
 @end

@@ -62,7 +62,7 @@
                 promoItem.promoDescription = [[promo valueForKey:@"promoID"]valueForKey:@"promoDescription"];
                 promoItem.promoValueAmount = [[[promo  valueForKey:@"promoID"]valueForKey:@"promoValueAmount"] integerValue];
                 promoItem.promoValidUntil = [[promo valueForKey:@"promoID"]valueForKey:@"promoValidUntil"];
-                promoItem.promoObjectId = [[promo valueForKey:@"promoID"]valueForKey:@"objectId"];
+                promoItem.promoObjectId = [promo valueForKey:@"objectId"];
                 
                 //method to load the image
                 PFFile *promoImage = [[[promoWinnerTableFromParse objectAtIndex:i] valueForKey:@"promoID"] objectForKey:@"promoImage"];
