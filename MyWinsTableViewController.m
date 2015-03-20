@@ -32,11 +32,11 @@
 
     //OLIV - LOAD DATA FROM PARSE
     
-    //Create the PromoQuery linked to the Promo table in parse
-    PFQuery *myWinsQuery = [PFQuery queryWithClassName:@"Promo"];
+    //Create the PromoQuery linked to the PromoWinner table in parse
+    PFQuery *myWinsQuery = [PFQuery queryWithClassName:@"PromoWinner"];
     
-    //Add the column making the connection to the Advertiser table
-    //    [myWinsQuery includeKey:@"promoID"];
+    //Add the column making the connection to the PromoTable and to the AdvertiserTable which ID is in the PromoTable
+        [myWinsQuery includeKey:@"promoID.advertiserID"];
     
     //Parse method to download the tables
     [myWinsQuery findObjectsInBackgroundWithBlock:^(NSArray *promoWinnerTableFromParse, NSError *error) {
@@ -53,30 +53,24 @@
                 //Initialise promo object
                 PromoItem *promoItem = [[PromoItem alloc]init];
                 
-                //fill the properties of the promo object
-                //promoItem.promoRetailerName = [[promo valueForKey:@"advertiserID"]valueForKey:@"advertiserName"];
-                //promoItem.promoRetailerType = [[promo valueForKey:@"advertiserID"]valueForKey:@"advertiserType"];
-                //promoItem.promoRetailerURL = [[promo valueForKey:@"advertiserID"]valueForKey:@"advertiserURL"];
-                //promoItem.promoRetailerTelephone = [[promo valueForKey:@"advertiserID"]valueForKey:@"advertiserTelephone"];
-                
-                promoItem.promoSummary = [promo valueForKey:@"promoDescription"];
-                NSLog(@"%@",[promo valueForKey:@"promoDescription"]);
-                
-                //valueForKey:@"promoSummary"
-                //promoItem.promoDescription = [promo valueForKey:@"promoDescription"];
-                //promoItem.promoValueAmount = [[promo valueForKey:@"promoValueAmount"] integerValue];    //??? how to cast?
-                //promoItem.promoValidUntil = [promo valueForKey:@"promoValidUntil"]; //??? how to cast?
-                //promoItem.promoObjectId = [promo valueForKey:@"objectId"];
-                
+                //fill the Retailer related properties of the promo object
+                promoItem.promoRetailerName = [[[promo valueForKey:@"promoID"]valueForKey:@"advertiserID"]valueForKey:@"advertiserName"];
+
+                //fill the promoItem related properties of the promo object
+                promoItem.promoSummary = [[promo valueForKey:@"promoID"]valueForKey:@"promoSummary"];
+                promoItem.promoDescription = [[promo valueForKey:@"promoID"]valueForKey:@"promoDescription"];
+                promoItem.promoValueAmount = [[[promo  valueForKey:@"promoID"]valueForKey:@"promoValueAmount"] integerValue];
+                promoItem.promoValidUntil = [[promo valueForKey:@"promoID"]valueForKey:@"promoValidUntil"];
+                promoItem.promoObjectId = [[promo valueForKey:@"promoID"]valueForKey:@"objectId"];
                 
                 //method to load the image
-                //PFFile *promoImage = [[promoWinnerTableFromParse objectAtIndex:i] objectForKey:@"promoImage"];
-                //[promoImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                //promoItem.promoImage = [UIImage imageWithData:data];
-                //
-                //                    //reload the data in the tableview
-                //[self.tableView reloadData];
-                //}];
+                PFFile *promoImage = [[[promoWinnerTableFromParse objectAtIndex:i] valueForKey:@"promoID"] objectForKey:@"promoImage"];
+                [promoImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                promoItem.promoImage = [UIImage imageWithData:data];
+                
+                                    //reload the data in the tableview
+                [self.tableView reloadData];
+                }];
                 
                 //add each object to the array
                 [self.promoItems addObject:promoItem];
