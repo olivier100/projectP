@@ -6,11 +6,12 @@
 //  Copyright (c) 2015 IronHack. All rights reserved.
 //
 
-#import "PromoDetailsViewController.h"
+#import "PromoGameViewController.h"
 #import <WebKit/WebKit.h>
 #import <Parse/Parse.h>
+#import "PromoDetailsViewController.h"
 
-@interface PromoDetailsViewController () <WKScriptMessageHandler> //TRIAL
+@interface PromoGameViewController () <WKScriptMessageHandler> //TRIAL
 
 //Properties specific to the PROMO
 @property (weak, nonatomic) IBOutlet UILabel *promoSummaryLabel;
@@ -25,6 +26,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *promoRetailerTelephoneLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *promoRetailerLogoUIImageView;
 
+//Button property to navigate to next page
+@property (weak, nonatomic) IBOutlet UIButton *promoDetailsButton;
+
 //FOR WebView
 @property (weak, nonatomic) IBOutlet UIWebView *gameUIWebView;
 
@@ -35,7 +39,7 @@
 
 @end
 
-@implementation PromoDetailsViewController
+@implementation PromoGameViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -79,7 +83,7 @@
 //    _gameWKwebView = [[WKWebView alloc] initWithFrame:self.view.frame];
     [_gameWKwebView loadRequest:request];
     
-    _gameWKwebView.frame = CGRectMake(0, 300, self.view.frame.size.width, self.view.frame.size.height/2);
+    _gameWKwebView.frame = CGRectMake(0, 175, self.view.frame.size.width, self.view.frame.size.height/1.5);
     [self.view addSubview:_gameWKwebView];
     
     
@@ -166,14 +170,18 @@
 
 
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+        
+    PromoDetailsViewController *promoDetailsViewController = [segue destinationViewController];
+//    PromoItem *promoItem = [[PromoItem alloc]init];
+    promoDetailsViewController.promoItem = self.promoItem;
+    
 }
-*/
+
 
 @end

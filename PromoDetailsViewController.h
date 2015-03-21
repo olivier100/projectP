@@ -2,7 +2,7 @@
 //  PromoDetailsViewController.h
 //  WinPromos
 //
-//  Created by olivier on 2015-03-16.
+//  Created by olivier on 2015-03-21.
 //  Copyright (c) 2015 IronHack. All rights reserved.
 //
 
@@ -12,5 +12,6 @@
 @interface PromoDetailsViewController : UIViewController
 
 @property (strong, nonatomic) PromoItem *promoItem;
+
 
 @end

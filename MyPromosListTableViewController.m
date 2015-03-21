@@ -9,7 +9,7 @@
 #import "MyPromosListTableViewController.h"
 #import "PromoItem.h"
 #import "AddPromoViewController.h"
-#import "PromoDetailsViewController.h"
+#import "PromoGameViewController.h"
 #import <Parse/Parse.h>
 #import "ListPropertyCellTableViewCell.h"
 @interface MyPromosListTableViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -322,7 +322,7 @@
     
     NSLog(@"%@", sender);
     
-            PromoDetailsViewController *promoDetailViewController = [segue destinationViewController];
+            PromoGameViewController *promoDetailViewController = [segue destinationViewController];
         
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
             PromoItem *promoItem = [[PromoItem alloc]init];

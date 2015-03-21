@@ -17,8 +17,9 @@
 		093315741AB701A20083F111 /* AddPromoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093315731AB701A20083F111 /* AddPromoViewController.m */; };
 		093315781AB7039F0083F111 /* MyPromosListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093315771AB7039F0083F111 /* MyPromosListTableViewController.m */; };
 		0933157B1AB713070083F111 /* PromoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0933157A1AB713070083F111 /* PromoItem.m */; };
-		0933157F1AB739D50083F111 /* PromoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0933157E1AB739D50083F111 /* PromoDetailsViewController.m */; };
+		0933157F1AB739D50083F111 /* PromoGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0933157E1AB739D50083F111 /* PromoGameViewController.m */; };
 		0968795E1ABDD81900ADA4B2 /* ListPropertyCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0968795D1ABDD81900ADA4B2 /* ListPropertyCellTableViewCell.m */; };
+		096879611ABDF7B700ADA4B2 /* PromoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 096879601ABDF7B700ADA4B2 /* PromoDetailsViewController.m */; };
 		097A2C241ABAC99800DE5C81 /* CrappyBird-master in Resources */ = {isa = PBXBuildFile; fileRef = 097A2C231ABAC99800DE5C81 /* CrappyBird-master */; };
 		097A2C261ABB1D8D00DE5C81 /* SlotMachine in Resources */ = {isa = PBXBuildFile; fileRef = 097A2C251ABB1D8D00DE5C81 /* SlotMachine */; };
 		098054321AB86976002176B1 /* image1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0980542D1AB86976002176B1 /* image1.png */; };
@@ -60,10 +61,12 @@
 		093315771AB7039F0083F111 /* MyPromosListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPromosListTableViewController.m; sourceTree = "<group>"; };
 		093315791AB713070083F111 /* PromoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoItem.h; sourceTree = "<group>"; };
 		0933157A1AB713070083F111 /* PromoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoItem.m; sourceTree = "<group>"; };
-		0933157D1AB739D50083F111 /* PromoDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromoDetailsViewController.h; path = WinPromos/PromoDetailsViewController.h; sourceTree = "<group>"; };
-		0933157E1AB739D50083F111 /* PromoDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PromoDetailsViewController.m; path = WinPromos/PromoDetailsViewController.m; sourceTree = "<group>"; };
+		0933157D1AB739D50083F111 /* PromoGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromoGameViewController.h; path = WinPromos/PromoGameViewController.h; sourceTree = "<group>"; };
+		0933157E1AB739D50083F111 /* PromoGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PromoGameViewController.m; path = WinPromos/PromoGameViewController.m; sourceTree = "<group>"; };
 		0968795C1ABDD81900ADA4B2 /* ListPropertyCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListPropertyCellTableViewCell.h; path = WinPromos/ListPropertyCellTableViewCell.h; sourceTree = "<group>"; };
 		0968795D1ABDD81900ADA4B2 /* ListPropertyCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListPropertyCellTableViewCell.m; path = WinPromos/ListPropertyCellTableViewCell.m; sourceTree = "<group>"; };
+		0968795F1ABDF7B700ADA4B2 /* PromoDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoDetailsViewController.h; sourceTree = "<group>"; };
+		096879601ABDF7B700ADA4B2 /* PromoDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoDetailsViewController.m; sourceTree = "<group>"; };
 		097A2C231ABAC99800DE5C81 /* CrappyBird-master */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "CrappyBird-master"; sourceTree = "<group>"; };
 		097A2C251ABB1D8D00DE5C81 /* SlotMachine */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SlotMachine; sourceTree = "<group>"; };
 		0980542D1AB86976002176B1 /* image1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image1.png; sourceTree = "<group>"; };
@@ -104,8 +107,10 @@
 				0968795D1ABDD81900ADA4B2 /* ListPropertyCellTableViewCell.m */,
 				093315761AB7039F0083F111 /* MyPromosListTableViewController.h */,
 				093315771AB7039F0083F111 /* MyPromosListTableViewController.m */,
-				0933157D1AB739D50083F111 /* PromoDetailsViewController.h */,
-				0933157E1AB739D50083F111 /* PromoDetailsViewController.m */,
+				0933157D1AB739D50083F111 /* PromoGameViewController.h */,
+				0933157E1AB739D50083F111 /* PromoGameViewController.m */,
+				0968795F1ABDF7B700ADA4B2 /* PromoDetailsViewController.h */,
+				096879601ABDF7B700ADA4B2 /* PromoDetailsViewController.m */,
 			);
 			name = Promos;
 			sourceTree = "<group>";
@@ -381,8 +386,9 @@
 				0933154F1AB6F11E0083F111 /* main.m in Sources */,
 				09F31B421ABB91D80019B89D /* MyWinsTableViewController.m in Sources */,
 				092A0C541ABC2F830057D337 /* MyWinsDetailsViewController.m in Sources */,
-				0933157F1AB739D50083F111 /* PromoDetailsViewController.m in Sources */,
+				0933157F1AB739D50083F111 /* PromoGameViewController.m in Sources */,
 				0933157B1AB713070083F111 /* PromoItem.m in Sources */,
+				096879611ABDF7B700ADA4B2 /* PromoDetailsViewController.m in Sources */,
 				0968795E1ABDD81900ADA4B2 /* ListPropertyCellTableViewCell.m in Sources */,
 				093315781AB7039F0083F111 /* MyPromosListTableViewController.m in Sources */,
 			);
