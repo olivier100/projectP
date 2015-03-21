@@ -18,6 +18,7 @@
 		093315781AB7039F0083F111 /* MyPromosListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093315771AB7039F0083F111 /* MyPromosListTableViewController.m */; };
 		0933157B1AB713070083F111 /* PromoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0933157A1AB713070083F111 /* PromoItem.m */; };
 		0933157F1AB739D50083F111 /* PromoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0933157E1AB739D50083F111 /* PromoDetailsViewController.m */; };
+		0968795E1ABDD81900ADA4B2 /* ListPropertyCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0968795D1ABDD81900ADA4B2 /* ListPropertyCellTableViewCell.m */; };
 		097A2C241ABAC99800DE5C81 /* CrappyBird-master in Resources */ = {isa = PBXBuildFile; fileRef = 097A2C231ABAC99800DE5C81 /* CrappyBird-master */; };
 		097A2C261ABB1D8D00DE5C81 /* SlotMachine in Resources */ = {isa = PBXBuildFile; fileRef = 097A2C251ABB1D8D00DE5C81 /* SlotMachine */; };
 		098054321AB86976002176B1 /* image1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0980542D1AB86976002176B1 /* image1.png */; };
@@ -61,6 +62,8 @@
 		0933157A1AB713070083F111 /* PromoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoItem.m; sourceTree = "<group>"; };
 		0933157D1AB739D50083F111 /* PromoDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromoDetailsViewController.h; path = WinPromos/PromoDetailsViewController.h; sourceTree = "<group>"; };
 		0933157E1AB739D50083F111 /* PromoDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PromoDetailsViewController.m; path = WinPromos/PromoDetailsViewController.m; sourceTree = "<group>"; };
+		0968795C1ABDD81900ADA4B2 /* ListPropertyCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListPropertyCellTableViewCell.h; path = WinPromos/ListPropertyCellTableViewCell.h; sourceTree = "<group>"; };
+		0968795D1ABDD81900ADA4B2 /* ListPropertyCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListPropertyCellTableViewCell.m; path = WinPromos/ListPropertyCellTableViewCell.m; sourceTree = "<group>"; };
 		097A2C231ABAC99800DE5C81 /* CrappyBird-master */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "CrappyBird-master"; sourceTree = "<group>"; };
 		097A2C251ABB1D8D00DE5C81 /* SlotMachine */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SlotMachine; sourceTree = "<group>"; };
 		0980542D1AB86976002176B1 /* image1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image1.png; sourceTree = "<group>"; };
@@ -97,6 +100,8 @@
 		092A0C551ABC2F9D0057D337 /* Promos */ = {
 			isa = PBXGroup;
 			children = (
+				0968795C1ABDD81900ADA4B2 /* ListPropertyCellTableViewCell.h */,
+				0968795D1ABDD81900ADA4B2 /* ListPropertyCellTableViewCell.m */,
 				093315761AB7039F0083F111 /* MyPromosListTableViewController.h */,
 				093315771AB7039F0083F111 /* MyPromosListTableViewController.m */,
 				0933157D1AB739D50083F111 /* PromoDetailsViewController.h */,
@@ -142,9 +147,9 @@
 		0933154B1AB6F11E0083F111 /* WinPromos */ = {
 			isa = PBXGroup;
 			children = (
+				093315561AB6F11E0083F111 /* Main.storyboard */,
 				093315501AB6F11E0083F111 /* AppDelegate.h */,
 				093315511AB6F11E0083F111 /* AppDelegate.m */,
-				093315561AB6F11E0083F111 /* Main.storyboard */,
 				093315591AB6F11F0083F111 /* Images.xcassets */,
 				0933155B1AB6F11F0083F111 /* LaunchScreen.xib */,
 				0933154C1AB6F11E0083F111 /* Supporting Files */,
@@ -378,6 +383,7 @@
 				092A0C541ABC2F830057D337 /* MyWinsDetailsViewController.m in Sources */,
 				0933157F1AB739D50083F111 /* PromoDetailsViewController.m in Sources */,
 				0933157B1AB713070083F111 /* PromoItem.m in Sources */,
+				0968795E1ABDD81900ADA4B2 /* ListPropertyCellTableViewCell.m in Sources */,
 				093315781AB7039F0083F111 /* MyPromosListTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

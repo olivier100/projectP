@@ -15,14 +15,15 @@
 //Properties specific to the PROMO
 @property (weak, nonatomic) IBOutlet UILabel *promoSummaryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promoDescriptionLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *promoRetailerLogoUIImageView;
 @property (weak, nonatomic) IBOutlet UILabel *promoValideUntilLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promoValueAmountLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *promoImageUIImageView;
 
 //Properties specific to the RETAILER
 @property (weak, nonatomic) IBOutlet UILabel *promoRetailerName;
 @property (weak, nonatomic) IBOutlet UILabel *promoRetailerURLLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promoRetailerTelephoneLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *promoRetailerLogoUIImageView;
 
 //FOR WebView
 @property (weak, nonatomic) IBOutlet UIWebView *gameUIWebView;
@@ -43,10 +44,11 @@
     self.promoRetailerName.text = self.promoItem.promoRetailerName;
     self.promoRetailerURLLabel.text = (NSString*)self.promoItem.promoRetailerURL;
     self.promoRetailerTelephoneLabel.text = self.promoItem.promoRetailerTelephone;
+    self.promoRetailerLogoUIImageView.image = self.promoItem.promoRetailerLogo;
 
     self.promoSummaryLabel.text = self.promoItem.promoSummary;
     self.promoDescriptionLabel.text = self.promoItem.promoDescription;
-    self.promoRetailerLogoUIImageView.image = self.promoItem.promoImage;
+    self.promoImageUIImageView.image = self.promoItem.promoImage;
     self.promoValideUntilLabel.text = [NSString stringWithFormat:@"%@",self.promoItem.promoValidUntil];
     self.promoValueAmountLabel.text = [NSString stringWithFormat:@"%lu",self.promoItem.promoValueAmount];
     

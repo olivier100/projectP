@@ -64,8 +64,17 @@
 }
 */
 
+
+////////STUCK COLLECTED CONFIRMATION POP UP
+
 - (IBAction)deleteWinPromoButton:(id)sender {
     
+    [self sendCollectedMessageToServer];
+    
+}
+
+
+-(void) sendCollectedMessageToServer{
     
     // PARSE GET - CREATE A QUERY TO RETRIEVE/AND FLAG PROMOITEMS WHICH HAVE BEEN COLLECTED
     
@@ -73,21 +82,29 @@
     PFQuery *promoQuery = [PFQuery queryWithClassName:@"PromoWinner"];
     [promoQuery whereKey:@"objectId" equalTo:self.promoItemWin.promoObjectId];
     
-        //print the object from this query
-        NSLog(@"objectID = %@",self.promoItemWin.promoObjectId);
-        NSLog(@"promoQuery = %@",promoQuery.description);
+    //print the object from this query
+    NSLog(@"objectID = %@",self.promoItemWin.promoObjectId);
+    NSLog(@"promoQuery = %@",promoQuery.description);
     
     //Once the ObjectId has been retrieved, update it with a TRUE in the Parse promoWinner table within the block below
     [promoQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-      
-        //PARSE SET - save the collected in the PromoWinner parse table to the right user line
-        PFObject *promoItem = [objects firstObject];
-        BOOL collected = true;
-        promoItem[@"promoCollected"] = [NSNumber numberWithBool:collected];
         
-        [promoItem saveEventually];
-
+        if (!objects) {
+            //PARSE SET - save the collected in the PromoWinner parse table to the right user line
+            PFObject *promoItem = [objects firstObject];
+            BOOL collected = true;
+            promoItem[@"promoCollected"] = [NSNumber numberWithBool:collected];
+            
+            [promoItem saveEventually];
+            
+            NSLog(@"Collected flag sent to parse");
+            
+        } else {
+            
+            NSLog(@"ERROR - in sending Collected flag to parse");
+        }
     }];
-    
 }
+
+
 @end
