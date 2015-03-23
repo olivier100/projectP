@@ -444,6 +444,11 @@ Game.prototype.update = function() {
         if ( ec ) {
             // Play win sound
             this.audios[2].play();
+            
+            //OLIV inserting message to communicate with Objective C
+            window.webkit.messageHandlers.observeHandlerSlotMachine.postMessage(ec);
+
+            
         } else {
             // Play no-win sound
             this.audios[3].play();

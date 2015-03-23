@@ -80,25 +80,21 @@
     NSString *gamePath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"CrappyBird-master"];
     NSURL *url = [NSURL fileURLWithPath:gamePath];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//    _gameWKwebView = [[WKWebView alloc] initWithFrame:self.view.frame];
     [_gameWKwebView loadRequest:request];
     
     _gameWKwebView.frame = CGRectMake(0, 175, self.view.frame.size.width, self.view.frame.size.height/1.5);
     [self.view addSubview:_gameWKwebView];
-    
-    
 }
 
-
 // OPTION 2 -
-// (1) GETTING RESULT FROM THE HTML
+// (1) GETTING RESULT FROM THE HTML GAME
 // (2) RUN SLOT MACHINE IF GAME SUCCESS
 // (3) TELL PARSE THAT THIS USER HAS WON THE PROMO
 
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
     
     
-    // (1) GETTING RESULT FROM THE HTML
+    // (1) GETTING RESULT FROM THE HTML GAME
     NSLog(@"Received event %@", message.body);
     self.gameScore = message.body;
     self.gameScoreLabel.text = self.gameScore.stringValue;
@@ -116,32 +112,25 @@
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [_gameUIWebView loadRequest:request];
     
-     
+    // (2.1) GETTING RESULT FROM SLOT MACHINE
         
-    // (3) TELL PARSE THAT THIS USER HAS WON THE PROMO
-    
+        
+    // (3) TELL PARSE THAT THIS USER HAS WON THE PROMO - i.e update the PromoWinner table with Promo and User ids
+ 
         //Step 1 - Create promoUser object what will contain the unique reference
-    
+
+        PFObject *user = [PFObject objectWithoutDataWithClassName:@"PromoUser" objectId:@"6ZJJ59uRrv"];
+
         // Create a query to retrieve the Parse promo object property "objectId"
         PFQuery *promoQuery = [PFQuery queryWithClassName:@"Promo"];
         [promoQuery whereKey:@"objectId" equalTo:self.promoItem.promoObjectId];
     
         //Once the ObjectId has been retrieved, update the Parse promoWinner table within the block below
         [promoQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
-// STUCK
-// WANT TO SAVE OJECTID FROM THE USER TABLE INTO THE PROMOWINNER TABLE
-// THIS REQUIRES QUERYING THE USER TABLE TO GET THE OBJECTID - THE OBJECTID IS OBTAINED WITHIN THE EXECUTION BLOCK. I THEREFORE HAVE TO EMBED ALL YET ANOTHER BLOCK INTO THE EXISTING BLOCKS AND IT DID NOT WORK
-//            PARSE - save game result and userEmail to parse PromoWinner table
-//            PFQuery *promoUserQuery = [PFQuery queryWithClassName:@"PromoUser"];
-//            [promoUserQuery whereKey:@"userEmail" equalTo:@"aaa@aaa.com"];
-//            [promoUserQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//                
-//             }];
-            
+    
                 PFObject *promoWinnerTableInParse = [PFObject objectWithClassName:@"PromoWinner"];
                 promoWinnerTableInParse[@"score"] = self.gameScore;
-                //            promoWinnerTableInParse[@"userEmail"] = [promoUserQuery fir"];
+                [promoWinnerTableInParse setObject:user forKey:@"userEmail"];
                 promoWinnerTableInParse[@"promoID"] = [objects firstObject];
                 
                 [promoWinnerTableInParse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -153,10 +142,11 @@
                         NSLog(@"Parse saving FAILURE");
                     }
                 }];
-
         }];
     }
 }
+
+
 
 -(void)viewDidAppear:(BOOL)animated{
 }

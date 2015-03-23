@@ -23,6 +23,8 @@
 @property NSDate *promoValidUntil;
 @property UIImage *promoImage;
 @property NSMutableArray *promoLocations;
+@property NSString *promoType;
+@property NSString *promoStatus;
 
 @property NSString *promoObjectId; //to contain the unique reference created from Parse
 

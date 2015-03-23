@@ -25,9 +25,9 @@
     self.promoItems = [[NSMutableArray alloc] init];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self loadInitialData];
     
 }
+
 
 -(void)loadInitialData{
 
