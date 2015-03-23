@@ -26,6 +26,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *promoRetailerTelephoneLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *promoRetailerLogoUIImageView;
 
+
+
+
 //Button property to navigate to next page
 @property (weak, nonatomic) IBOutlet UIButton *promoDetailsButton;
 
@@ -34,6 +37,7 @@
 
 //FOR WKWebView
 @property(strong,nonatomic) WKWebView *gameWKwebView;
+@property(strong,nonatomic) WKWebView *gameWKwebViewSlotMachine;
 @property (weak, nonatomic) IBOutlet UILabel *gameScoreLabel;
 @property (strong, nonatomic) NSNumber *gameScore;
 
@@ -56,39 +60,41 @@
     self.promoValideUntilLabel.text = [NSString stringWithFormat:@"%@",self.promoItem.promoValidUntil];
     self.promoValueAmountLabel.text = [NSString stringWithFormat:@"%lu",self.promoItem.promoValueAmount];
     
-
-//    OPTION 1 - WEBVIEW - implementing WebView
-//    NSURL *url = [NSURL URLWithString:@"http://www.netsolitaire.com/"];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//    [_gameUIWebView loadRequest:request];
-//    
-//    OPTION 1 - WEBVIEW - Load internal game using webview
-//    NSString *gamePath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"CrappyBird-master"];
-//    NSURL *url = [NSURL fileURLWithPath:gamePath];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//    [_gameUIWebView loadRequest:request];
     
+//WKWEBVIEW - GAME
+    
+    //WKWEBVIEW - Setting the up WkWebKit Configuration and Controller to be able to use the "didReceiveScriptMessage" method
 
-    //OPTION 2 - WKWEBVIEW - Setting the up WkWebKit Configuration and Controller to be able to use the "didReceiveScriptMessage" method
+    // (1) Setting the WKWebView
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc]init];
     WKUserContentController *controller = [[WKUserContentController alloc]init];
     [controller addScriptMessageHandler:self name:@"observeHandler"];
-    [controller addScriptMessageHandler:self name:@"observeHandlerSlotMachine"];
-
+    
     configuration.userContentController = controller;
     _gameWKwebView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:configuration];
-
-    //OPTION 2 - WKWEBVIEW - Implement WkWebView and load internal game
+    
+    // (2) Implement WkWebView and load internal game
     NSString *gamePath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"CrappyBird-master"];
     NSURL *url = [NSURL fileURLWithPath:gamePath];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [_gameWKwebView loadRequest:request];
-    
+
+    // (3) paint it on screen
     _gameWKwebView.frame = CGRectMake(0, 175, self.view.frame.size.width, self.view.frame.size.height/1.5);
     [self.view addSubview:_gameWKwebView];
+    
+//WKWEBVIEW - SLOT MACHINE
+
+    //Setting the WKWebView
+    WKWebViewConfiguration *configurationSlotMachine = [[WKWebViewConfiguration alloc]init];
+    WKUserContentController *controllerSlotMachine = [[WKUserContentController alloc]init];
+    [controllerSlotMachine addScriptMessageHandler:self name:@"observeHandlerSlotMachine"];
+
+    configuration.userContentController = configurationSlotMachine;
+    _gameWKwebViewSlotMachine = [[WKWebView alloc] initWithFrame:self.view.frame configuration:configurationSlotMachine];
+    
 }
 
-// OPTION 2 -
 // (1) GETTING RESULT FROM THE HTML GAME
 // (2) RUN SLOT MACHINE IF GAME SUCCESS
 // (3) TELL PARSE THAT THIS USER HAS WON THE PROMO
@@ -96,60 +102,78 @@
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
     
     
-    // (1) GETTING RESULT FROM THE HTML GAME
+    // GETTING RESULT FROM THE HTML GAME
     NSLog(@"Received event %@", message.body);
     self.gameScore = message.body;
-    self.gameScoreLabel.text = self.gameScore.stringValue;
-    
-    
-    // (2) LOAD SLOT MACHINE IF GAME SUCCESS
-    
+
+    // SET MIN SCORE TO SPIN SLOT MACHINE
     int minScoreSuccess = 0;
+  
+    // LOAD SLOT MACHINE IF GAME SCORE IS >= to minScoreSuccess
     
-    if ([self.gameScore integerValue] >=minScoreSuccess ) {
+    if ([self.gameScore integerValue] >=minScoreSuccess )
+    {
+        [self runSlotMachine];
+        NSLog(@"SUCCESS - Running slot machine");
         
-        [self.gameWKwebView removeFromSuperview];
-        NSString *gamePath =[[NSBundle mainBundle]pathForResource:@"index" ofType:@"html" inDirectory:@"SlotMachine"];
-        NSURL *url = [NSURL fileURLWithPath:gamePath];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        [_gameUIWebView loadRequest:request];
-    
-    // (2.1) GETTING RESULT FROM SLOT MACHINE
-        self.gameScore = message.body;
-
+    } else {
         
-        
-    // (3) TELL PARSE THAT THIS USER HAS WON THE PROMO - i.e update the PromoWinner table with Promo and User ids
- 
-        //Step 1 - Create promoUser object what will contain the unique reference
-
-        PFObject *user = [PFObject objectWithoutDataWithClassName:@"PromoUser" objectId:@"6ZJJ59uRrv"];
-
-        // Create a query to retrieve the Parse promo object property "objectId"
-        PFQuery *promoQuery = [PFQuery queryWithClassName:@"Promo"];
-        [promoQuery whereKey:@"objectId" equalTo:self.promoItem.promoObjectId];
-    
-        //Once the ObjectId has been retrieved, update the Parse promoWinner table within the block below
-        [promoQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-    
-                PFObject *promoWinnerTableInParse = [PFObject objectWithClassName:@"PromoWinner"];
-                promoWinnerTableInParse[@"score"] = self.gameScore;
-                [promoWinnerTableInParse setObject:user forKey:@"userEmail"];
-                promoWinnerTableInParse[@"promoID"] = [objects firstObject];
-                
-                [promoWinnerTableInParse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if (succeeded) {
-                        // The object has been saved.
-                        NSLog(@"Result saved to parse");
-                    } else {
-                        // There was a problem, check error.description
-                        NSLog(@"Parse saving FAILURE");
-                    }
-                }];
-        }];
+        NSLog(@"Not running slot machine");
     }
+     
 }
 
+-(void)runSlotMachine{
+    
+    [self.gameWKwebView removeFromSuperview];
+    
+    NSString *gamePath =[[NSBundle mainBundle]pathForResource:@"index" ofType:@"html" inDirectory:@"SlotMachine"];
+    NSURL *url = [NSURL fileURLWithPath:gamePath];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    _gameWKwebViewSlotMachine.frame = CGRectMake(0, 175, self.view.frame.size.width, self.view.frame.size.height/1.5);
+    [self.view addSubview:_gameWKwebViewSlotMachine];
+
+    [_gameWKwebViewSlotMachine loadRequest:request];
+    
+    // (2.1) GETTING RESULT FROM SLOT MACHINE
+    
+    [self parseSaveToPromoWinnerTable];
+
+}
+
+-(void)parseSaveToPromoWinnerTable{
+    
+    //TELL PARSE THAT THIS USER HAS WON THE PROMO - i.e update the PromoWinner table with Promo and User ids
+    
+    //Create promoUser object what will contain the unique reference
+    PFObject *user = [PFObject objectWithoutDataWithClassName:@"PromoUser" objectId:@"6ZJJ59uRrv"];
+    
+    // Create a query to retrieve the Parse promo object property "objectId"
+    PFQuery *promoQuery = [PFQuery queryWithClassName:@"Promo"];
+    [promoQuery whereKey:@"objectId" equalTo:self.promoItem.promoObjectId];
+    
+    //Once the ObjectId has been retrieved, update the Parse promoWinner table within the block below
+    [promoQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        PFObject *promoWinnerTableInParse = [PFObject objectWithClassName:@"PromoWinner"];
+        promoWinnerTableInParse[@"score"] = self.gameScore;
+        [promoWinnerTableInParse setObject:user forKey:@"userEmail"];
+        promoWinnerTableInParse[@"promoID"] = [objects firstObject];
+        
+        [promoWinnerTableInParse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                // The object has been saved.
+                NSLog(@"Result saved to parse");
+            } else {
+                // There was a problem, check error.description
+                NSLog(@"Parse saving FAILURE");
+            }
+        }];
+    }];
+    
+    
+}
 
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -159,9 +183,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-
 
 
 

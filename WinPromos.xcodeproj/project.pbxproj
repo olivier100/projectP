@@ -23,9 +23,6 @@
 		097A2C261ABB1D8D00DE5C81 /* SlotMachine in Resources */ = {isa = PBXBuildFile; fileRef = 097A2C251ABB1D8D00DE5C81 /* SlotMachine */; };
 		09A739661ABF252400B1ADE6 /* PromoTypeUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A739651ABF252400B1ADE6 /* PromoTypeUIImageView.m */; };
 		09CC75EE1AC057400074A122 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09CC75ED1AC057400074A122 /* Main.storyboard */; };
-		09CC75F11AC0919C0074A122 /* PFDefaultSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CC75F01AC0919C0074A122 /* PFDefaultSettingsViewController.m */; };
-		09CC75F71AC097BF0074A122 /* MyLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CC75F41AC097BF0074A122 /* MyLogInViewController.m */; };
-		09CC75F81AC097BF0074A122 /* MySignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CC75F61AC097BF0074A122 /* MySignUpViewController.m */; };
 		09F31B421ABB91D80019B89D /* MyWinsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F31B411ABB91D80019B89D /* MyWinsTableViewController.m */; };
 		30F2AFC955B5793AD5647EA5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A676B11CF815CD5717AF62F /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -70,12 +67,6 @@
 		09A739641ABF252400B1ADE6 /* PromoTypeUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromoTypeUIImageView.h; path = WinPromos/PromoTypeUIImageView.h; sourceTree = "<group>"; };
 		09A739651ABF252400B1ADE6 /* PromoTypeUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PromoTypeUIImageView.m; path = WinPromos/PromoTypeUIImageView.m; sourceTree = "<group>"; };
 		09CC75ED1AC057400074A122 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = WinPromos/Main.storyboard; sourceTree = "<group>"; };
-		09CC75EF1AC0919C0074A122 /* PFDefaultSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFDefaultSettingsViewController.h; sourceTree = "<group>"; };
-		09CC75F01AC0919C0074A122 /* PFDefaultSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFDefaultSettingsViewController.m; sourceTree = "<group>"; };
-		09CC75F31AC097BF0074A122 /* MyLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLogInViewController.h; sourceTree = "<group>"; };
-		09CC75F41AC097BF0074A122 /* MyLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLogInViewController.m; sourceTree = "<group>"; };
-		09CC75F51AC097BF0074A122 /* MySignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySignUpViewController.h; sourceTree = "<group>"; };
-		09CC75F61AC097BF0074A122 /* MySignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySignUpViewController.m; sourceTree = "<group>"; };
 		09F31B401ABB91D80019B89D /* MyWinsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWinsTableViewController.h; sourceTree = "<group>"; };
 		09F31B411ABB91D80019B89D /* MyWinsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWinsTableViewController.m; sourceTree = "<group>"; };
 		4A676B11CF815CD5717AF62F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,12 +215,6 @@
 		09CC75F21AC091AA0074A122 /* LoginSignUp */ = {
 			isa = PBXGroup;
 			children = (
-				09CC75EF1AC0919C0074A122 /* PFDefaultSettingsViewController.h */,
-				09CC75F01AC0919C0074A122 /* PFDefaultSettingsViewController.m */,
-				09CC75F31AC097BF0074A122 /* MyLogInViewController.h */,
-				09CC75F41AC097BF0074A122 /* MyLogInViewController.m */,
-				09CC75F51AC097BF0074A122 /* MySignUpViewController.h */,
-				09CC75F61AC097BF0074A122 /* MySignUpViewController.m */,
 			);
 			name = LoginSignUp;
 			sourceTree = "<group>";
@@ -407,15 +392,12 @@
 			files = (
 				093315521AB6F11E0083F111 /* AppDelegate.m in Sources */,
 				093315741AB701A20083F111 /* AddPromoViewController.m in Sources */,
-				09CC75F81AC097BF0074A122 /* MySignUpViewController.m in Sources */,
 				0933154F1AB6F11E0083F111 /* main.m in Sources */,
 				09F31B421ABB91D80019B89D /* MyWinsTableViewController.m in Sources */,
 				09A739661ABF252400B1ADE6 /* PromoTypeUIImageView.m in Sources */,
-				09CC75F11AC0919C0074A122 /* PFDefaultSettingsViewController.m in Sources */,
 				092A0C541ABC2F830057D337 /* MyWinsDetailsViewController.m in Sources */,
 				0933157F1AB739D50083F111 /* PromoGameViewController.m in Sources */,
 				0933157B1AB713070083F111 /* PromoItem.m in Sources */,
-				09CC75F71AC097BF0074A122 /* MyLogInViewController.m in Sources */,
 				096879611ABDF7B700ADA4B2 /* PromoDetailsViewController.m in Sources */,
 				0968795E1ABDD81900ADA4B2 /* ListPropertyCellTableViewCell.m in Sources */,
 				093315781AB7039F0083F111 /* MyPromosListTableViewController.m in Sources */,
