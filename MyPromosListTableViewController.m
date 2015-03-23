@@ -16,6 +16,7 @@
 
 @property (strong, nonatomic) NSMutableArray *promoItems;
 @property int noOfPromosLabel;
+@property int promoSummaryTotalValue;
 
 
 @end
@@ -59,6 +60,13 @@
             
             //Count number of promos in the array
             self.noOfPromosLabel = promoTableFromParse.count;
+            
+            double sum = 0;
+            for (NSNumber * n in [promoTableFromParse valueForKey:@"promoValueAmount"]) {
+                sum += [n doubleValue];
+            }
+            self.promoSummaryTotalValue = sum ;
+
             
             //only used to return each image in the objectAtIndex
             int i = 0;
@@ -231,7 +239,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [self.promoItems count];
+    return [self.promoItems count] +1;
 }
 
 
@@ -247,7 +255,7 @@
 //}
 
 
-//  UNCOMMENT THIS TO GO BACK TO DETAIL CELLS
+//  UNCOMMENT THIS TO GO BACK TO DETAIL CELLS FORMAT
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 //   
 //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPropertyCell" forIndexPath:indexPath];
@@ -265,17 +273,29 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    ListPropertyCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPropertyCell" forIndexPath:indexPath];
     
-    // CUSTOM CELL - Configure the cell
-    PromoItem *promoItem = [self.promoItems objectAtIndex:indexPath.row];
-    cell.retailerNameLabel.text = promoItem.promoRetailerName;
-    cell.promoSummaryLabel.text = promoItem.promoSummary;
-    cell.promoImageLabel.image = promoItem.promoImage;
-    cell.promoValueAmountLabel.text = [NSString stringWithFormat:@"%lu", promoItem.promoValueAmount];
-    cell.noOfPromosLabel.text = [NSString stringWithFormat:@"%lu", self.noOfPromosLabel];
+    if (indexPath.row == 0) {
+        ListPropertyCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PromosSummaryPropertyCell" forIndexPath:indexPath];
+        NSLog(@"no of promos = %lu", self.noOfPromosLabel);
+        cell.noOfPromosLabel.text = [NSString stringWithFormat:@"%lu", self.noOfPromosLabel];
+        cell.promoSummaryTotalValue.text = [NSString stringWithFormat:@"%lu", self.promoSummaryTotalValue];
 
-    return cell;
+        return cell;
+        
+    } else {
+        
+        ListPropertyCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPropertyCell" forIndexPath:indexPath];
+        
+        // CUSTOM CELL - Configure the cell
+        PromoItem *promoItem = [self.promoItems objectAtIndex:indexPath.row - 1];
+        cell.retailerNameLabel.text = promoItem.promoRetailerName;
+        cell.promoSummaryLabel.text = promoItem.promoSummary;
+        cell.promoImageLabel.image = promoItem.promoImage;
+        cell.promoValueAmountLabel.text = [NSString stringWithFormat:@"%lu", promoItem.promoValueAmount];
+        cell.noOfPromosLabel.text = [NSString stringWithFormat:@"%lu", self.noOfPromosLabel];
+        
+        return cell;
+    }
 }
 
 #pragma mark - Table View Delegate

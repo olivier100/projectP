@@ -23,6 +23,7 @@
 		097A2C241ABAC99800DE5C81 /* CrappyBird-master in Resources */ = {isa = PBXBuildFile; fileRef = 097A2C231ABAC99800DE5C81 /* CrappyBird-master */; };
 		097A2C261ABB1D8D00DE5C81 /* SlotMachine in Resources */ = {isa = PBXBuildFile; fileRef = 097A2C251ABB1D8D00DE5C81 /* SlotMachine */; };
 		09A739661ABF252400B1ADE6 /* PromoTypeUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A739651ABF252400B1ADE6 /* PromoTypeUIImageView.m */; };
+		09CC75EC1AC0287C0074A122 /* PromosSummaryCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CC75EB1AC0287C0074A122 /* PromosSummaryCellTableViewCell.m */; };
 		09F31B421ABB91D80019B89D /* MyWinsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F31B411ABB91D80019B89D /* MyWinsTableViewController.m */; };
 		30F2AFC955B5793AD5647EA5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A676B11CF815CD5717AF62F /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,8 @@
 		097A2C251ABB1D8D00DE5C81 /* SlotMachine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SlotMachine; path = WinPromos/SlotMachine; sourceTree = "<group>"; };
 		09A739641ABF252400B1ADE6 /* PromoTypeUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromoTypeUIImageView.h; path = WinPromos/PromoTypeUIImageView.h; sourceTree = "<group>"; };
 		09A739651ABF252400B1ADE6 /* PromoTypeUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PromoTypeUIImageView.m; path = WinPromos/PromoTypeUIImageView.m; sourceTree = "<group>"; };
+		09CC75EA1AC0287C0074A122 /* PromosSummaryCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromosSummaryCellTableViewCell.h; sourceTree = "<group>"; };
+		09CC75EB1AC0287C0074A122 /* PromosSummaryCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromosSummaryCellTableViewCell.m; sourceTree = "<group>"; };
 		09F31B401ABB91D80019B89D /* MyWinsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWinsTableViewController.h; sourceTree = "<group>"; };
 		09F31B411ABB91D80019B89D /* MyWinsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWinsTableViewController.m; sourceTree = "<group>"; };
 		4A676B11CF815CD5717AF62F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +99,8 @@
 		092A0C551ABC2F9D0057D337 /* Promos */ = {
 			isa = PBXGroup;
 			children = (
+				09CC75EA1AC0287C0074A122 /* PromosSummaryCellTableViewCell.h */,
+				09CC75EB1AC0287C0074A122 /* PromosSummaryCellTableViewCell.m */,
 				0968795C1ABDD81900ADA4B2 /* ListPropertyCellTableViewCell.h */,
 				0968795D1ABDD81900ADA4B2 /* ListPropertyCellTableViewCell.m */,
 				093315761AB7039F0083F111 /* MyPromosListTableViewController.h */,
@@ -382,6 +387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09CC75EC1AC0287C0074A122 /* PromosSummaryCellTableViewCell.m in Sources */,
 				093315521AB6F11E0083F111 /* AppDelegate.m in Sources */,
 				093315741AB701A20083F111 /* AddPromoViewController.m in Sources */,
 				0933154F1AB6F11E0083F111 /* main.m in Sources */,
