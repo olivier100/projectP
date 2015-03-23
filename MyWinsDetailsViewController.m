@@ -65,12 +65,43 @@
 */
 
 
-////////STUCK COLLECTED CONFIRMATION POP UP
-
 - (IBAction)deleteWinPromoButton:(id)sender {
     
-    [self sendCollectedMessageToServer];
+    [self promoCollectedConfirmationPopUp];
     
+}
+
+
+-(void)promoCollectedConfirmationPopUp{
+    
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Confirmation"
+                                          message:@"This item has been collected?"
+                                          preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"Cancel action");
+                                   }];
+    
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:NSLocalizedString(@"Confirm", @"OK action")
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction *action)
+                               {
+                                   NSLog(@"OK action");
+                                   [self sendCollectedMessageToServer];
+                                   
+                               }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 
@@ -87,27 +118,23 @@
     
     //Once the ObjectId has been retrieved, update the Parse promoWinner table within the block below
     [promoQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-    
-        if (!objects) {
-            
-            //PARSE - save the collected in the PromoWinner parse table to the right user line
-            PFObject *promoItem = [objects firstObject];
-            BOOL collected = true;
-            promoItem[@"promoCollected"] = [NSNumber numberWithBool:collected];
-            
-            [promoItem saveEventually];
-            NSLog(@"Collected flag sent to parse");
-        
-        } else {
-            NSLog(@"ERROR - in sending collected flag to parse");
-
-        }
         
 
         
+        
+        
+        
+        
+        //PARSE - save the collected in the PromoWinner parse table to the right user line
+        PFObject *promoItem = [objects firstObject];
+        BOOL collected = true;
+        promoItem[@"promoCollected"] = [NSNumber numberWithBool:collected];
+        
+        [promoItem saveEventually];
+        NSLog(@"Collected flag sent to parse");
         
     }];
-
+    
 }
 
 
