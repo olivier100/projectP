@@ -58,9 +58,11 @@
         //Verify if there is no error
         if (!error) {
             
+            //FOR THE SUMMARY CELL
             //Count number of promos in the array
             self.noOfPromosLabel = promoTableFromParse.count;
             
+            //Sum the total promo value amount
             double sum = 0;
             for (NSNumber * n in [promoTableFromParse valueForKey:@"promoValueAmount"]) {
                 sum += [n doubleValue];
@@ -301,6 +303,7 @@
 #pragma mark - Table View Delegate
 
 
+//A WAY TO DO A SEGUE BY CODE
 //-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    NSLog(@"ho");
 //    

@@ -73,6 +73,8 @@
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc]init];
     WKUserContentController *controller = [[WKUserContentController alloc]init];
     [controller addScriptMessageHandler:self name:@"observeHandler"];
+    [controller addScriptMessageHandler:self name:@"observeHandlerSlotMachine"];
+
     configuration.userContentController = controller;
     _gameWKwebView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:configuration];
 
@@ -100,7 +102,7 @@
     self.gameScoreLabel.text = self.gameScore.stringValue;
     
     
-    // (2) RUN SLOT MACHINE IF GAME SUCCESS
+    // (2) LOAD SLOT MACHINE IF GAME SUCCESS
     
     int minScoreSuccess = 0;
     
@@ -113,6 +115,8 @@
         [_gameUIWebView loadRequest:request];
     
     // (2.1) GETTING RESULT FROM SLOT MACHINE
+        self.gameScore = message.body;
+
         
         
     // (3) TELL PARSE THAT THIS USER HAS WON THE PROMO - i.e update the PromoWinner table with Promo and User ids
