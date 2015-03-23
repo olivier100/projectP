@@ -302,7 +302,15 @@
 
 
 //-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    NSLog(@"ho");
 //    
+//    if (indexPath.row != 0) {
+//        PromoGameViewController *promoVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PromoDetailsViewController"];
+//    
+//        promoVC.promoItem = self.promoItems[indexPath.row -1];
+//    
+//        [self.navigationController pushViewController:promoVC animated:YES];
+//    }
 //}
 
 
@@ -355,7 +363,7 @@
         
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
             PromoItem *promoItem = [[PromoItem alloc]init];
-            promoItem = self.promoItems[indexPath.row];
+            promoItem = self.promoItems[indexPath.row -1] ;
             promoDetailViewController.promoItem = promoItem;
  
 }

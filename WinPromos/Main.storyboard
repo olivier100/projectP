@@ -58,7 +58,7 @@
         <!--Win It!-->
         <scene sceneID="KA3-FD-gEh">
             <objects>
-                <viewController id="Xsb-Y9-WGb" customClass="PromoGameViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PromoDetailsViewController" id="Xsb-Y9-WGb" customClass="PromoGameViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="H0D-RP-Hea"/>
                         <viewControllerLayoutGuide type="bottom" id="yf3-Ra-Bxj"/>
@@ -273,7 +273,6 @@
                                     <outlet property="noOfPromosLabel" destination="3F2-bF-XeV" id="Dyz-lL-p17"/>
                                     <outlet property="promoSummaryTotalValue" destination="NEe-yw-Y81" id="Ob3-MJ-kEh"/>
                                     <outlet property="promoValueAmountLabel" destination="NEe-yw-Y81" id="azL-Jm-2AM"/>
-                                    <segue destination="Xsb-Y9-WGb" kind="show" id="ZJ7-8y-iLU"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ListPropertyCell" rowHeight="85" id="3SM-jb-EJs" customClass="ListPropertyCellTableViewCell">
@@ -369,6 +368,7 @@
                                     <outlet property="promoSummaryLabel" destination="dhQ-Tm-1la" id="RAa-cb-U6w"/>
                                     <outlet property="promoValueAmountLabel" destination="qsP-V1-diT" id="IoM-xP-eei"/>
                                     <outlet property="retailerNameLabel" destination="bUr-Fg-a56" id="8CG-sh-aIp"/>
+                                    <segue destination="Xsb-Y9-WGb" kind="show" id="kjM-Bo-JkR"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
