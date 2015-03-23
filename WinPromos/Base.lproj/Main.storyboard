@@ -145,15 +145,15 @@
                                 <exclude reference="ujg-5l-P9a"/>
                                 <exclude reference="zAc-vd-5Go"/>
                                 <exclude reference="S32-IP-ywm"/>
-                                <exclude reference="0RY-BP-tS2"/>
-                                <exclude reference="4dc-dw-tP6"/>
-                                <exclude reference="IM0-Yv-DTj"/>
                                 <exclude reference="RC3-mW-v09"/>
                                 <exclude reference="SL9-ee-yML"/>
                                 <exclude reference="jMa-6b-bO1"/>
                                 <exclude reference="lQS-hv-gu6"/>
                                 <exclude reference="o3F-hO-ZCL"/>
                                 <exclude reference="ye6-vQ-4zs"/>
+                                <exclude reference="0RY-BP-tS2"/>
+                                <exclude reference="4dc-dw-tP6"/>
+                                <exclude reference="IM0-Yv-DTj"/>
                             </mask>
                         </variation>
                     </view>
@@ -241,10 +241,17 @@
                                             <color key="textColor" red="0.49803921580314636" green="0.49803921580314636" blue="0.49803921580314636" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="noOfPromos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3F2-bF-XeV">
+                                            <rect key="frame" x="475" y="16" width="97" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="b2Q-xS-lDL" firstAttribute="leading" secondItem="7IE-H6-ivu" secondAttribute="leading" id="2me-im-sYH"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="7IE-H6-ivu" secondAttribute="bottom" constant="22" id="79w-Yr-IPm"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="3F2-bF-XeV" secondAttribute="trailing" constant="20" id="8Gm-8a-Mky"/>
                                         <constraint firstItem="7IE-H6-ivu" firstAttribute="top" secondItem="etw-NZ-scD" secondAttribute="topMargin" constant="26" id="8Xe-OM-nzk"/>
                                         <constraint firstItem="t1o-SJ-rrB" firstAttribute="leading" secondItem="etw-NZ-scD" secondAttribute="leadingMargin" constant="82" id="8Y8-k5-5kU"/>
                                         <constraint firstItem="661-JZ-5E8" firstAttribute="leading" secondItem="etw-NZ-scD" secondAttribute="leading" constant="185" id="8cc-MY-Z01"/>
@@ -252,6 +259,7 @@
                                         <constraint firstItem="o7o-sx-png" firstAttribute="centerY" secondItem="etw-NZ-scD" secondAttribute="centerY" constant="1" id="9l6-RE-bQH"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="t1o-SJ-rrB" secondAttribute="bottom" constant="53" id="B4Q-6c-i0b"/>
                                         <constraint firstItem="661-JZ-5E8" firstAttribute="firstBaseline" secondItem="b2Q-xS-lDL" secondAttribute="firstBaseline" constant="2" id="BMh-DJ-aok"/>
+                                        <constraint firstItem="3F2-bF-XeV" firstAttribute="centerY" secondItem="o7o-sx-png" secondAttribute="centerY" constant="-17" id="FXz-0s-QU2"/>
                                         <constraint firstItem="661-JZ-5E8" firstAttribute="top" secondItem="BqS-ak-pZk" secondAttribute="bottom" constant="14" id="Fi3-1Q-8n0"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="661-JZ-5E8" secondAttribute="bottom" constant="6" id="Hir-JA-2Dt"/>
                                         <constraint firstItem="7IE-H6-ivu" firstAttribute="leading" secondItem="BqS-ak-pZk" secondAttribute="leading" id="VuT-Cr-gLt"/>
@@ -264,6 +272,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="noOfPromosLabel" destination="3F2-bF-XeV" id="Dyz-lL-p17"/>
                                     <outlet property="promoImageLabel" destination="o7o-sx-png" id="tt8-mj-yvY"/>
                                     <outlet property="promoSummaryLabel" destination="7IE-H6-ivu" id="QNN-mQ-J2u"/>
                                     <outlet property="promoValueAmountLabel" destination="661-JZ-5E8" id="Wqe-vq-XOv"/>

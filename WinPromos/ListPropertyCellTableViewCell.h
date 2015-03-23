@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *promoSummaryLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *promoImageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promoValueAmountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *noOfPromosLabel;
 
 
 @end

@@ -14,8 +14,8 @@
 #import "ListPropertyCellTableViewCell.h"
 @interface MyPromosListTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
-
 @property (strong, nonatomic) NSMutableArray *promoItems;
+@property int noOfPromosLabel;
 
 
 @end
@@ -50,12 +50,15 @@
     PFObject *promoWinner = [PFObject objectWithClassName:@"PromoWinner"];
     [promoQuery whereKeyDoesNotExist:@"promoID"];
     
+    
     //Parse method to download the tables
     [promoQuery findObjectsInBackgroundWithBlock:^(NSArray *promoTableFromParse, NSError *error) {
         
         //Verify if there is no error
         if (!error) {
             
+            //Count number of promos in the array
+            self.noOfPromosLabel = promoTableFromParse.count;
             
             //only used to return each image in the objectAtIndex
             int i = 0;
@@ -270,6 +273,7 @@
     cell.promoSummaryLabel.text = promoItem.promoSummary;
     cell.promoImageLabel.image = promoItem.promoImage;
     cell.promoValueAmountLabel.text = [NSString stringWithFormat:@"%lu", promoItem.promoValueAmount];
+    cell.noOfPromosLabel.text = [NSString stringWithFormat:@"%lu", self.noOfPromosLabel];
 
     return cell;
 }
