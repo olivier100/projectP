@@ -11,7 +11,7 @@
 #import <Parse/Parse.h>
 #import "PromoDetailsViewController.h"
 
-@interface PromoGameViewController () <WKScriptMessageHandler> //TRIAL
+@interface PromoGameViewController () <WKScriptMessageHandler, UIWebViewDelegate> //TRIAL
 
 //Properties specific to the PROMO
 @property (weak, nonatomic) IBOutlet UILabel *promoSummaryLabel;
@@ -48,6 +48,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.gameUIWebView.delegate = self;
 
     self.promoRetailerName.text = self.promoItem.promoRetailerName;
     self.promoRetailerURLLabel.text = (NSString*)self.promoItem.promoRetailerURL;
@@ -95,13 +97,12 @@
     
 }
 
-// (1) GETTING RESULT FROM THE HTML GAME
-// (2) RUN SLOT MACHINE IF GAME SUCCESS
-// (3) TELL PARSE THAT THIS USER HAS WON THE PROMO
 
+
+// (1) GETTING RESULT FROM THE HTML GAME -> If Success runSlotMachine
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
     
-    
+
     // GETTING RESULT FROM THE HTML GAME
     NSLog(@"Received event %@", message.body);
     self.gameScore = message.body;
@@ -113,17 +114,18 @@
     
     if ([self.gameScore integerValue] >=minScoreSuccess )
     {
-        [self runSlotMachine];
-        NSLog(@"SUCCESS - Running slot machine");
-        
+        [self displaySlotMachine];
+
     } else {
         
-        NSLog(@"Not running slot machine");
+        NSLog(@"Score too low - Not running slot machine");
     }
      
 }
 
--(void)runSlotMachine{
+
+// (2) DISPLAY SLOTMACHINE
+-(void)displaySlotMachine{
     
     [self.gameWKwebView removeFromSuperview];
     
@@ -131,37 +133,46 @@
     NSURL *url = [NSURL fileURLWithPath:gamePath];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
-    NSString *someHTML = [_gameUIWebView stringByEvaluatingJavaScriptFromString:@"document.innerHTML"];
-    NSLog(@"someHtml = %@",someHTML);
+//    NSString *someHTML = [_gameUIWebView stringByEvaluatingJavaScriptFromString:@"document.innerHTML"];
+//    NSLog(@"someHtml = %@",someHTML);
+    
+    //UIwebView
+    _gameUIWebView.frame = CGRectMake(0, 175, self.view.frame.size.width, self.view.frame.size.height/1.5);
+    [self.view addSubview:_gameUIWebView];
+    [_gameUIWebView loadRequest:request];
+    
+    NSLog(@"Displaying slot machine");
 
     
-    //Select WKwebView (1) or UIWebView (2)
+}
+
+
+
+
+// (3) GET MESSAGE RESULT FROM SLOTMACHINE -> if Succcess message, call parseSaveToPromoWinnerTable
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     
-    int webViewSelector = 2;
+    NSLog(@"Message from Slot Machine request data %@",request.URL);
+    NSString *result = [NSString stringWithFormat:@"%@",request.URL];
     
-    if (webViewSelector == 1) {
-        
-        //WKwebView
-        _gameWKwebView.frame = CGRectMake(0, 175, self.view.frame.size.width, self.view.frame.size.height/1.5);
-        [self.view addSubview:_gameWKwebView];
-        [_gameUIWebView loadRequest:request];
+    if ([result containsString:@"Thing"])
+    
+    {
+        [self parseSaveToPromoWinnerTable];
     
     } else {
     
-        //UIwebView
-        _gameUIWebView.frame = CGRectMake(0, 175, self.view.frame.size.width, self.view.frame.size.height/1.5);
-        [self.view addSubview:_gameUIWebView];
-        [_gameUIWebView loadRequest:request];
+        NSLog(@"not saved to parse");
+    
     }
-    
-    
-    
-    // (2.1) GETTING RESULT FROM SLOT MACHINE
-    
-    [self parseSaveToPromoWinnerTable];
+
+    return TRUE;
 
 }
 
+
+
+// (4) SAVE TO PARSE
 -(void)parseSaveToPromoWinnerTable{
     
     //TELL PARSE THAT THIS USER HAS WON THE PROMO - i.e update the PromoWinner table with Promo and User ids

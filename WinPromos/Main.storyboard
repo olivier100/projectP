@@ -474,10 +474,10 @@
             </objects>
             <point key="canvasLocation" x="444" y="1098"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Test View Controller-->
         <scene sceneID="300-US-VKv">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="WOi-Mp-Fgg" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="WOi-Mp-Fgg" customClass="TestViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="3mE-J9-SY0">

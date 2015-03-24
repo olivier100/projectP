@@ -22,6 +22,8 @@
 		097A2C241ABAC99800DE5C81 /* CrappyBird-master in Resources */ = {isa = PBXBuildFile; fileRef = 097A2C231ABAC99800DE5C81 /* CrappyBird-master */; };
 		097A2C261ABB1D8D00DE5C81 /* SlotMachine in Resources */ = {isa = PBXBuildFile; fileRef = 097A2C251ABB1D8D00DE5C81 /* SlotMachine */; };
 		09A1C9DC1AC16FC300FDA591 /* SlotMachine2 in Resources */ = {isa = PBXBuildFile; fileRef = 09A1C9DB1AC16FC300FDA591 /* SlotMachine2 */; };
+		09A1C9DF1AC1B32A00FDA591 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A1C9DE1AC1B32A00FDA591 /* LoginViewController.m */; };
+		09A1C9E21AC1B8C500FDA591 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A1C9E11AC1B8C500FDA591 /* TestViewController.m */; };
 		09A739661ABF252400B1ADE6 /* PromoTypeUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A739651ABF252400B1ADE6 /* PromoTypeUIImageView.m */; };
 		09CC75EE1AC057400074A122 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09CC75ED1AC057400074A122 /* Main.storyboard */; };
 		09F31B421ABB91D80019B89D /* MyWinsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F31B411ABB91D80019B89D /* MyWinsTableViewController.m */; };
@@ -66,6 +68,10 @@
 		097A2C231ABAC99800DE5C81 /* CrappyBird-master */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "CrappyBird-master"; path = "WinPromos/CrappyBird-master"; sourceTree = "<group>"; };
 		097A2C251ABB1D8D00DE5C81 /* SlotMachine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SlotMachine; path = WinPromos/SlotMachine; sourceTree = "<group>"; };
 		09A1C9DB1AC16FC300FDA591 /* SlotMachine2 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SlotMachine2; sourceTree = "<group>"; };
+		09A1C9DD1AC1B32A00FDA591 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		09A1C9DE1AC1B32A00FDA591 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		09A1C9E01AC1B8C500FDA591 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		09A1C9E11AC1B8C500FDA591 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		09A739641ABF252400B1ADE6 /* PromoTypeUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromoTypeUIImageView.h; path = WinPromos/PromoTypeUIImageView.h; sourceTree = "<group>"; };
 		09A739651ABF252400B1ADE6 /* PromoTypeUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PromoTypeUIImageView.m; path = WinPromos/PromoTypeUIImageView.m; sourceTree = "<group>"; };
 		09CC75ED1AC057400074A122 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = WinPromos/Main.storyboard; sourceTree = "<group>"; };
@@ -190,6 +196,8 @@
 				09A739671ABF274A00B1ADE6 /* AddAPromo */,
 				092A0C551ABC2F9D0057D337 /* Promos */,
 				092A0C561ABC2FAA0057D337 /* Wins */,
+				09A1C9E01AC1B8C500FDA591 /* TestViewController.h */,
+				09A1C9E11AC1B8C500FDA591 /* TestViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -217,6 +225,8 @@
 		09CC75F21AC091AA0074A122 /* LoginSignUp */ = {
 			isa = PBXGroup;
 			children = (
+				09A1C9DD1AC1B32A00FDA591 /* LoginViewController.h */,
+				09A1C9DE1AC1B32A00FDA591 /* LoginViewController.m */,
 			);
 			name = LoginSignUp;
 			sourceTree = "<group>";
@@ -395,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				093315521AB6F11E0083F111 /* AppDelegate.m in Sources */,
+				09A1C9E21AC1B8C500FDA591 /* TestViewController.m in Sources */,
 				093315741AB701A20083F111 /* AddPromoViewController.m in Sources */,
 				0933154F1AB6F11E0083F111 /* main.m in Sources */,
 				09F31B421ABB91D80019B89D /* MyWinsTableViewController.m in Sources */,
@@ -402,6 +413,7 @@
 				092A0C541ABC2F830057D337 /* MyWinsDetailsViewController.m in Sources */,
 				0933157F1AB739D50083F111 /* PromoGameViewController.m in Sources */,
 				0933157B1AB713070083F111 /* PromoItem.m in Sources */,
+				09A1C9DF1AC1B32A00FDA591 /* LoginViewController.m in Sources */,
 				096879611ABDF7B700ADA4B2 /* PromoDetailsViewController.m in Sources */,
 				0968795E1ABDD81900ADA4B2 /* ListPropertyCellTableViewCell.m in Sources */,
 				093315781AB7039F0083F111 /* MyPromosListTableViewController.m in Sources */,

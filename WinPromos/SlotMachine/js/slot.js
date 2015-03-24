@@ -324,14 +324,14 @@ Game.prototype.restart = function() {
     }
 
     // uncomment to get always jackpot
-    //this.result1 = _find( this.items1, 'gold-64' );
-    //this.result2 = _find( this.items2, 'gold-64' );
-    //this.result3 = _find( this.items3, 'gold-64' );
+    this.result1 = _find( this.items1, 'gold-64' );
+    this.result2 = _find( this.items2, 'gold-64' );
+    this.result3 = _find( this.items3, 'gold-64' );
 
     // get random results
-    this.result1 = parseInt(Math.random() * this.items1.length)
-    this.result2 = parseInt(Math.random() * this.items2.length)
-    this.result3 = parseInt(Math.random() * this.items3.length)
+//    this.result1 = parseInt(Math.random() * this.items1.length)
+//    this.result2 = parseInt(Math.random() * this.items2.length)
+//    this.result3 = parseInt(Math.random() * this.items3.length)
 
     // Clear stop locations
     this.stopped1 = false;
@@ -446,9 +446,8 @@ Game.prototype.update = function() {
             this.audios[2].play();
             
             //OLIV inserting message to communicate with Objective C
-            window.webkit.messageHandlers.observeHandlerSlotMachine.postMessage(ec);
-            stringByEvaluatingJavaScriptFromString
-
+            var url = "thisIsAFakeUglyMessageThing";
+            window.location = url;
             
         } else {
             // Play no-win sound

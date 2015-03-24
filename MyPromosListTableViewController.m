@@ -11,6 +11,7 @@
 #import "AddPromoViewController.h"
 #import "PromoGameViewController.h"
 #import <Parse/Parse.h>
+
 #import "ListPropertyCellTableViewCell.h"
 @interface MyPromosListTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -26,8 +27,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self parseLogin];
-    
+    if (![PFUser currentUser]) {
+        [PFUser logInWithUsername:@"ccc" password:@"ccc"];
+    }
+        
     self.promoItems = [[NSMutableArray alloc] init];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -50,24 +53,7 @@
     
 }
 
--(void)parseLogin{
-    
-    if (![PFUser currentUser]) { // No user logged in
-        // Create the log in view controller
-        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
-        [logInViewController setDelegate:self]; // Set ourselves as the delegate
-        
-        // Create the sign up view controller
-        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
-        [signUpViewController setDelegate:self]; // Set ourselves as the delegate
-        
-        // Assign our sign up controller to be displayed from the login controller
-        [logInViewController setSignUpController:signUpViewController];
-        
-        // Present the log in view controller
-        [self presentViewController:logInViewController animated:YES completion:NULL];
-    }
-}
+
 
 
 -(void)loadInitialData{
@@ -163,91 +149,42 @@
 
 -(void)getPromoIdFromPromoWinnerTable{
     
-    int x =1;
-    
-    if (x ==1)
-    {
-    //OTHER ATTEMPT - 1 - Returns the Promos from the current user - but the promoID are from the PromoWinner table
-        PFQuery *query = [PFQuery queryWithClassName:@"Promo"];
-        //    [query whereKey:@"objectId" matchesKey:@"promoID" inQuery:query];
-        
+   
         PFQuery *innerQuery = [PFQuery queryWithClassName:@"PromoWinner"];
+        [innerQuery selectKeys:@[@"promoID"]];
         [innerQuery whereKey:@"user" equalTo:[PFUser currentUser]];
-        [innerQuery findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
+        [innerQuery findObjectsInBackgroundWithBlock:^(NSArray *idsPromo, NSError *error) {
             
-            for (PFObject *promo in comments) {
-                NSLog(@"Result from innerQuery promoID = %@", [comments valueForKey:@"promoID"]);
-                NSLog(@"Result from innerQuery ObjectId = %@", [comments valueForKey:@"objectId"]);
-                NSLog(@"Result from innerQuery ObjectId = %@", [comments valueForKey:@"promoSummary"]);
-                
+            NSLog(@"%lu", (unsigned long)idsPromo.count);
+            NSMutableArray *idsArray = [NSMutableArray array];
+            for (PFObject *promoWinner in idsPromo) {
+                PFObject *promo = [promoWinner objectForKey:@"promoID"];
+                NSString *objectID = promo.objectId;
+                [idsArray addObject:objectID];
             }
-        }];
-        
-    } else if (x ==2)
-    
-    {
-    //OTHER ATTEMPT - 2 - Does not return the NSLogs
-        PFQuery *innerQuery = [PFQuery queryWithClassName:@"PromoWinner"];
-        [innerQuery whereKey:@"user" equalTo:[PFUser currentUser]];
-        
-        PFQuery *query = [PFQuery queryWithClassName:@"Promo"];
-        [query whereKey:@"objectId" matchesKey:@"promoID" inQuery:innerQuery];
-        
-        [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
-            
-            for (PFObject *promo in comments) {
-                NSLog(@"Result from innerQuery promoID = %@", [comments valueForKey:@"promoID"]);
-                NSLog(@"Result from innerQuery ObjectId = %@", [comments valueForKey:@"objectId"]);
-                NSLog(@"Result from innerQuery ObjectId = %@", [comments valueForKey:@"promoSummary"]);
-            }
-        }];
-        
-    } else if (x==3)
-    
-    {
-    //OTHER ATTEMPT - 3 - Gives "[Error]: bad type for $inQuery (Code: 102, Version: 1.6.5)"
-        PFQuery *innerQuery = [PFQuery queryWithClassName:@"PromoWinner"];
-        [innerQuery whereKey:@"user" equalTo:[PFUser currentUser]];
-        
-        PFQuery *query = [PFQuery queryWithClassName:@"Promo"];
-        [query whereKey:@"objectId" matchesQuery:innerQuery];
-        
-        [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
-            
-            for (PFObject *promo in comments) {
-                NSLog(@"Result from innerQuery promoID = %@", [comments valueForKey:@"promoID"]);
-                NSLog(@"Result from innerQuery ObjectId = %@", [comments valueForKey:@"objectId"]);
-                NSLog(@"Result from innerQuery ObjectId = %@", [comments valueForKey:@"promoSummary"]);
-                
-                
-            }
-        }];
-        
-    } else if (x==4)
-        
-    {
-        
-        //OTHER ATTEMPT - 4 - Block in a Block -> returns error
-        
-        PFQuery *innerQuery = [PFQuery queryWithClassName:@"PromoWinner"];
-        [innerQuery whereKey:@"user" equalTo:[PFUser currentUser]];
-        [innerQuery findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
-            
+
             PFQuery *query = [PFQuery queryWithClassName:@"Promo"];
-            [query whereKey:@"objectId" matchesKey:@"promoID" inQuery:query];
-            [query findObjectsInBackgroundWithBlock:^(NSArray *comments2, NSError *error) {
+            [query whereKey:@"objectId" notContainedIn:idsArray];
+            [query findObjectsInBackgroundWithBlock:^(NSArray *promosNotWinner, NSError *error) {
                 
-                for (PFObject *promo in comments2) {
-                    NSLog(@"Result from innerQuery promoID = %@", [comments2 valueForKey:@"promoID"]);
-                    NSLog(@"Result from innerQuery ObjectId = %@", [comments2 valueForKey:@"objectId"]);
-                    NSLog(@"Result from innerQuery ObjectId = %@", [comments2 valueForKey:@"promoSummary"]);
-                    
-                }
-            }];
+                NSLog(@"pomoNotWinner count: %lu", (unsigned long)promosNotWinner.count);
+                NSLog(@"promoSummary: %@", [promosNotWinner valueForKey:@"promoSummary"]);
+                NSLog(@"promoDescription: %@", [promosNotWinner valueForKey:@"promoDescription"]);
+                NSLog(@"promoValueAmount: %@", [promosNotWinner valueForKey:@"promoValueAmount"]);
+                NSLog(@"promoCurrency: %@", [promosNotWinner valueForKey:@"promoCurrency"]);
+                NSLog(@"promoValidUntil: %@", [promosNotWinner valueForKey:@"promoValidUntil"]);
+                NSLog(@"advertiserID: %@", [promosNotWinner valueForKey:@"advertiserID"]);
+                
+//                NSLog(@"advertiserID: %@", [[promosNotWinner valueForKey:@"advertiserID"] valueForKey:@"advertiserName"]);
+
             
+                
+
+            }];
+
         }];
         
-    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
