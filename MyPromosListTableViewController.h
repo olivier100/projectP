@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ParseUI.h>
 
-@interface MyPromosListTableViewController : UITableViewController
+@interface MyPromosListTableViewController : UITableViewController <PFSignUpViewControllerDelegate, PFLogInViewControllerDelegate>
 
 -(IBAction)unwindToList:(UIStoryboardSegue *)segue;
 

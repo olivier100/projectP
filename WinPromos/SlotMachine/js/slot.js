@@ -447,6 +447,7 @@ Game.prototype.update = function() {
             
             //OLIV inserting message to communicate with Objective C
             window.webkit.messageHandlers.observeHandlerSlotMachine.postMessage(ec);
+            stringByEvaluatingJavaScriptFromString
 
             
         } else {

@@ -184,7 +184,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PromosSummaryPropertyCell" rowHeight="35" id="VOk-fQ-Zak" customClass="ListPropertyCellTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PromosSummaryPropertyCell" rowHeight="40" id="VOk-fQ-Zak" customClass="ListPropertyCellTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VOk-fQ-Zak" id="etw-NZ-scD">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -332,12 +332,6 @@
                                             <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="noOfPromos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3X-7j-yPq">
-                                            <rect key="frame" x="475" y="16" width="97" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="dhQ-Tm-1la" firstAttribute="leading" secondItem="sbF-tD-mj0" secondAttribute="trailing" constant="26" id="1M5-Zy-4Ke"/>
@@ -348,7 +342,6 @@
                                         <constraint firstItem="6Vj-wS-Y1d" firstAttribute="leading" secondItem="dhQ-Tm-1la" secondAttribute="leading" id="OCA-Yb-RWd"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="qsP-V1-diT" secondAttribute="bottom" constant="6" id="PBc-p4-KGg"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="6Vj-wS-Y1d" secondAttribute="bottom" constant="5" id="WQv-q0-Rfi"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="S3X-7j-yPq" secondAttribute="trailing" constant="20" id="XfJ-lE-zmJ"/>
                                         <constraint firstItem="bUr-Fg-a56" firstAttribute="top" secondItem="i0O-Wi-bJ5" secondAttribute="topMargin" constant="7" id="XzY-QO-5h9"/>
                                         <constraint firstItem="dhQ-Tm-1la" firstAttribute="top" secondItem="i0O-Wi-bJ5" secondAttribute="topMargin" constant="26" id="aNH-YS-h18"/>
                                         <constraint firstItem="sbF-tD-mj0" firstAttribute="centerY" secondItem="i0O-Wi-bJ5" secondAttribute="centerY" constant="1" id="b4m-d5-ALk"/>
@@ -356,14 +349,12 @@
                                         <constraint firstItem="dhQ-Tm-1la" firstAttribute="leading" secondItem="bUr-Fg-a56" secondAttribute="leading" id="cRs-xI-Ua4"/>
                                         <constraint firstItem="sbF-tD-mj0" firstAttribute="top" secondItem="i0O-Wi-bJ5" secondAttribute="topMargin" constant="4" id="dVU-FI-aW1"/>
                                         <constraint firstItem="bUr-Fg-a56" firstAttribute="leading" secondItem="gNU-pi-Obg" secondAttribute="trailing" constant="17" id="eiI-aT-4T8"/>
-                                        <constraint firstItem="S3X-7j-yPq" firstAttribute="centerY" secondItem="sbF-tD-mj0" secondAttribute="centerY" constant="-17" id="fio-W3-qFm"/>
                                         <constraint firstItem="qsP-V1-diT" firstAttribute="top" secondItem="bUr-Fg-a56" secondAttribute="bottom" constant="14" id="kKn-8k-oQs"/>
                                         <constraint firstItem="qsP-V1-diT" firstAttribute="leading" secondItem="i0O-Wi-bJ5" secondAttribute="leading" constant="185" id="kv8-7X-xY0"/>
                                         <constraint firstItem="qsP-V1-diT" firstAttribute="firstBaseline" secondItem="6Vj-wS-Y1d" secondAttribute="firstBaseline" constant="2" id="zVt-gA-z2f"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="noOfPromosLabel" destination="S3X-7j-yPq" id="eNT-PU-1fp"/>
                                     <outlet property="promoImageLabel" destination="sbF-tD-mj0" id="Md8-Mx-pnx"/>
                                     <outlet property="promoSummaryLabel" destination="dhQ-Tm-1la" id="RAa-cb-U6w"/>
                                     <outlet property="promoValueAmountLabel" destination="qsP-V1-diT" id="IoM-xP-eei"/>

@@ -131,10 +131,30 @@
     NSURL *url = [NSURL fileURLWithPath:gamePath];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
-    _gameWKwebViewSlotMachine.frame = CGRectMake(0, 175, self.view.frame.size.width, self.view.frame.size.height/1.5);
-    [self.view addSubview:_gameWKwebViewSlotMachine];
+    NSString *someHTML = [_gameUIWebView stringByEvaluatingJavaScriptFromString:@"document.innerHTML"];
+    NSLog(@"someHtml = %@",someHTML);
 
-    [_gameWKwebViewSlotMachine loadRequest:request];
+    
+    //Select WKwebView (1) or UIWebView (2)
+    
+    int webViewSelector = 2;
+    
+    if (webViewSelector == 1) {
+        
+        //WKwebView
+        _gameWKwebView.frame = CGRectMake(0, 175, self.view.frame.size.width, self.view.frame.size.height/1.5);
+        [self.view addSubview:_gameWKwebView];
+        [_gameUIWebView loadRequest:request];
+    
+    } else {
+    
+        //UIwebView
+        _gameUIWebView.frame = CGRectMake(0, 175, self.view.frame.size.width, self.view.frame.size.height/1.5);
+        [self.view addSubview:_gameUIWebView];
+        [_gameUIWebView loadRequest:request];
+    }
+    
+    
     
     // (2.1) GETTING RESULT FROM SLOT MACHINE
     
@@ -145,10 +165,7 @@
 -(void)parseSaveToPromoWinnerTable{
     
     //TELL PARSE THAT THIS USER HAS WON THE PROMO - i.e update the PromoWinner table with Promo and User ids
-    
-    //Create promoUser object what will contain the unique reference
-    PFObject *user = [PFObject objectWithoutDataWithClassName:@"PromoUser" objectId:@"6ZJJ59uRrv"];
-    
+        
     // Create a query to retrieve the Parse promo object property "objectId"
     PFQuery *promoQuery = [PFQuery queryWithClassName:@"Promo"];
     [promoQuery whereKey:@"objectId" equalTo:self.promoItem.promoObjectId];
@@ -158,7 +175,8 @@
         
         PFObject *promoWinnerTableInParse = [PFObject objectWithClassName:@"PromoWinner"];
         promoWinnerTableInParse[@"score"] = self.gameScore;
-        [promoWinnerTableInParse setObject:user forKey:@"userEmail"];
+        [promoWinnerTableInParse setObject:[PFUser currentUser] forKey:@"user"];
+
         promoWinnerTableInParse[@"promoID"] = [objects firstObject];
         
         [promoWinnerTableInParse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

@@ -21,6 +21,7 @@
 		096879611ABDF7B700ADA4B2 /* PromoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 096879601ABDF7B700ADA4B2 /* PromoDetailsViewController.m */; };
 		097A2C241ABAC99800DE5C81 /* CrappyBird-master in Resources */ = {isa = PBXBuildFile; fileRef = 097A2C231ABAC99800DE5C81 /* CrappyBird-master */; };
 		097A2C261ABB1D8D00DE5C81 /* SlotMachine in Resources */ = {isa = PBXBuildFile; fileRef = 097A2C251ABB1D8D00DE5C81 /* SlotMachine */; };
+		09A1C9DC1AC16FC300FDA591 /* SlotMachine2 in Resources */ = {isa = PBXBuildFile; fileRef = 09A1C9DB1AC16FC300FDA591 /* SlotMachine2 */; };
 		09A739661ABF252400B1ADE6 /* PromoTypeUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A739651ABF252400B1ADE6 /* PromoTypeUIImageView.m */; };
 		09CC75EE1AC057400074A122 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09CC75ED1AC057400074A122 /* Main.storyboard */; };
 		09F31B421ABB91D80019B89D /* MyWinsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F31B411ABB91D80019B89D /* MyWinsTableViewController.m */; };
@@ -64,6 +65,7 @@
 		096879601ABDF7B700ADA4B2 /* PromoDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoDetailsViewController.m; sourceTree = "<group>"; };
 		097A2C231ABAC99800DE5C81 /* CrappyBird-master */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "CrappyBird-master"; path = "WinPromos/CrappyBird-master"; sourceTree = "<group>"; };
 		097A2C251ABB1D8D00DE5C81 /* SlotMachine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SlotMachine; path = WinPromos/SlotMachine; sourceTree = "<group>"; };
+		09A1C9DB1AC16FC300FDA591 /* SlotMachine2 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SlotMachine2; sourceTree = "<group>"; };
 		09A739641ABF252400B1ADE6 /* PromoTypeUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromoTypeUIImageView.h; path = WinPromos/PromoTypeUIImageView.h; sourceTree = "<group>"; };
 		09A739651ABF252400B1ADE6 /* PromoTypeUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PromoTypeUIImageView.m; path = WinPromos/PromoTypeUIImageView.m; sourceTree = "<group>"; };
 		09CC75ED1AC057400074A122 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = WinPromos/Main.storyboard; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			children = (
 				097A2C231ABAC99800DE5C81 /* CrappyBird-master */,
 				097A2C251ABB1D8D00DE5C81 /* SlotMachine */,
+				09A1C9DB1AC16FC300FDA591 /* SlotMachine2 */,
 			);
 			name = Games;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				097A2C261ABB1D8D00DE5C81 /* SlotMachine in Resources */,
 				09CC75EE1AC057400074A122 /* Main.storyboard in Resources */,
 				0933155D1AB6F11F0083F111 /* LaunchScreen.xib in Resources */,
+				09A1C9DC1AC16FC300FDA591 /* SlotMachine2 in Resources */,
 				0933155A1AB6F11F0083F111 /* Images.xcassets in Resources */,
 				097A2C241ABAC99800DE5C81 /* CrappyBird-master in Resources */,
 			);
