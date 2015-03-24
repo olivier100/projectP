@@ -32,6 +32,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self loadInitialData];
+    [self getPromoIdFromPromoWinnerTable];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -162,101 +163,92 @@
 
 -(void)getPromoIdFromPromoWinnerTable{
     
-//    //PARSE GET objectId of promos in win
-//    
-//    //Create the PromoQuery linked to the PromoWinner table in parse
-//    PFQuery *myWinsQuery = [PFQuery queryWithClassName:@"PromoWinner"];
-//    
-//    //We need to get the Retailer Name which is two tables away
-//    //To do this we say, go to "Promo" table using "promoID" and then go to "Advertisers" table using "advertiserID"
-//    //We can now retrieve the Retailer name using this path -> "PromoWinner" -> "Promo" -> "Advertisers"
-//    [myWinsQuery includeKey:@"promoID.advertiserID"];
-//    
-//    //Parse method to download the tables
-//    //It says, execute the following with the objects from this query
-//    [myWinsQuery findObjectsInBackgroundWithBlock:^(NSArray *promoWinnerTableFromParse, NSError *error) {
-//                  int i =1;
-//        //Verify if there is no error
-//        if (!error) {
-////            NSLog(@"Result from innerQuery = %@", promoWinnerTableFromParse);
-//            
-//            //Convert every row from the Parse table into an Objective C object
-//            for (PFObject *promo in promoWinnerTableFromParse) {
-//                
-//                //Initialise promo object
-//                PromoItem *promoItem = [[PromoItem alloc]init];
-//                
-//                //fill the Retailer related properties of the promo object
-//
-//                NSLog(@"%d - Promos which don't have collected flag", i);
-//                NSLog(@"1 - %@", [[promo valueForKey:@"promoID"]valueForKey:@"objectId"]);
-//                NSLog(@"2 - %@", [[[promo valueForKey:@"promoID"]valueForKey:@"advertiserID"]valueForKey:@"objectId"]);
-//                NSLog(@"3 - %@", [[[promo valueForKey:@"promoID"]valueForKey:@"advertiserID"]valueForKey:@"advertiserName"]);
-//                i++;
-//            };
-//        }else {
-//                
-//                NSLog(@"Error");
-//            }
-//    }];
-
+    int x =1;
     
-//    PFQuery *query = [PFQuery queryWithClassName:@"PromoWinner"];
-//    [query whereKey:@"promoID" equalTo:@"K109oo8K00"];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        if (!error) {
-//            // The find succeeded.
-//            NSLog(@"Successfully retrieved %d scores.", objects.count);
-//            // Do something with the found objects
-//            for (PFObject *object in objects) {
-//                NSLog(@"%@", object.objectId);
-//            }
-//        } else {
-//            // Log details of the failure
-//            NSLog(@"Error: %@ %@", error, [error userInfo]);
-//        }
-//    }];
+    if (x ==1)
+    {
+    //OTHER ATTEMPT - 1 - Returns the Promos from the current user - but the promoID are from the PromoWinner table
+        PFQuery *query = [PFQuery queryWithClassName:@"Promo"];
+        //    [query whereKey:@"objectId" matchesKey:@"promoID" inQuery:query];
+        
+        PFQuery *innerQuery = [PFQuery queryWithClassName:@"PromoWinner"];
+        [innerQuery whereKey:@"user" equalTo:[PFUser currentUser]];
+        [innerQuery findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
+            
+            for (PFObject *promo in comments) {
+                NSLog(@"Result from innerQuery promoID = %@", [comments valueForKey:@"promoID"]);
+                NSLog(@"Result from innerQuery ObjectId = %@", [comments valueForKey:@"objectId"]);
+                NSLog(@"Result from innerQuery ObjectId = %@", [comments valueForKey:@"promoSummary"]);
+                
+            }
+        }];
+        
+    } else if (x ==2)
     
+    {
+    //OTHER ATTEMPT - 2 - Does not return the NSLogs
+        PFQuery *innerQuery = [PFQuery queryWithClassName:@"PromoWinner"];
+        [innerQuery whereKey:@"user" equalTo:[PFUser currentUser]];
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"Promo"];
+        [query whereKey:@"objectId" matchesKey:@"promoID" inQuery:innerQuery];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
+            
+            for (PFObject *promo in comments) {
+                NSLog(@"Result from innerQuery promoID = %@", [comments valueForKey:@"promoID"]);
+                NSLog(@"Result from innerQuery ObjectId = %@", [comments valueForKey:@"objectId"]);
+                NSLog(@"Result from innerQuery ObjectId = %@", [comments valueForKey:@"promoSummary"]);
+            }
+        }];
+        
+    } else if (x==3)
     
-//    PFQuery *innerQuery = [PFQuery queryWithClassName:@"PromoWinner"];
-//    [innerQuery whereKeyExists:@"promoID"];
-//    PFQuery *query = [PFQuery queryWithClassName:@"Promo"];
-//    [query whereKey:@"objectId" doesNotMatchQuery:innerQuery];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
-//                NSLog(@"Result from innerQuery = %@", comments);
-//    }];
-    
-    
-//    PFQuery *innerQuery = [PFQuery queryWithClassName:@"PromoWinner"];
-//    [innerQuery whereKeyExists:@"promoID"];
-//    PFQuery *query = [PFQuery queryWithClassName:@"Promo"];
-//    [query whereKey:@"objectId" matchesQuery:innerQuery];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
-//        // comments now contains the comments for posts with images
-//        NSLog(@"Result from innerQuery = %@", comments);
-//        
-//    }];
-    
-//    PFQuery *innerQuery = [PFQuery queryWithClassName:@"Promo"];
-//    [innerQuery whereKeyExists:@"objectId"];
-//    PFQuery *query = [PFQuery queryWithClassName:@"PromoWinner"];
-//    [query whereKey:@"promoID" matchesQuery:innerQuery];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
-//        // comments now contains the comments for posts with images
-//        NSLog(@"Result from innerQuery = %d", comments.count);
-//        NSLog(@"Result from innerQuery = %@", comments.description);
-//        
-//    }];
-//    
-//    PFQuery *promoQuery = [PFQuery queryWithClassName:@"Promo"];
-//    PFQuery *userQuery = [PFQuery promoQuery];
-//    [userQuery whereKey:@"hometown" matchesKey:@"city" inQuery:promoQuery];
-//    [userQuery findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-//        // results will contain users with a hometown team with a winning record
-//    }];
-    
+    {
+    //OTHER ATTEMPT - 3 - Gives "[Error]: bad type for $inQuery (Code: 102, Version: 1.6.5)"
+        PFQuery *innerQuery = [PFQuery queryWithClassName:@"PromoWinner"];
+        [innerQuery whereKey:@"user" equalTo:[PFUser currentUser]];
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"Promo"];
+        [query whereKey:@"objectId" matchesQuery:innerQuery];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
+            
+            for (PFObject *promo in comments) {
+                NSLog(@"Result from innerQuery promoID = %@", [comments valueForKey:@"promoID"]);
+                NSLog(@"Result from innerQuery ObjectId = %@", [comments valueForKey:@"objectId"]);
+                NSLog(@"Result from innerQuery ObjectId = %@", [comments valueForKey:@"promoSummary"]);
+                
+                
+            }
+        }];
+        
+    } else if (x==4)
+        
+    {
+        
+        //OTHER ATTEMPT - 4 - Block in a Block -> returns error
+        
+        PFQuery *innerQuery = [PFQuery queryWithClassName:@"PromoWinner"];
+        [innerQuery whereKey:@"user" equalTo:[PFUser currentUser]];
+        [innerQuery findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
+            
+            PFQuery *query = [PFQuery queryWithClassName:@"Promo"];
+            [query whereKey:@"objectId" matchesKey:@"promoID" inQuery:query];
+            [query findObjectsInBackgroundWithBlock:^(NSArray *comments2, NSError *error) {
+                
+                for (PFObject *promo in comments2) {
+                    NSLog(@"Result from innerQuery promoID = %@", [comments2 valueForKey:@"promoID"]);
+                    NSLog(@"Result from innerQuery ObjectId = %@", [comments2 valueForKey:@"objectId"]);
+                    NSLog(@"Result from innerQuery ObjectId = %@", [comments2 valueForKey:@"promoSummary"]);
+                    
+                }
+            }];
+            
+        }];
+        
+    }
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
