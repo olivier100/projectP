@@ -34,22 +34,97 @@
     self.promoItems = [[NSMutableArray alloc] init];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self loadInitialData];
-    [self getPromoIdFromPromoWinnerTable];
+    [self getPromosExcludingPromosWonByUser];
 }
 
--(void)viewDidAppear:(BOOL)animated{
-//    [self getPromoIdFromPromoWinnerTable];
 
-}
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row ==0) {
-        return 40;
-    } else {
-        return 85;
-    }
+
+
+-(void)getPromosExcludingPromosWonByUser{
     
+    //Create the PromoQuery linked to the Promo table in parse
+    PFQuery *promoQuery = [PFQuery queryWithClassName:@"Promo"];
+    
+    //Add the column making the connection to the Advertiser table
+    [promoQuery includeKey:@"advertiserID"];
+    
+    
+    PFQuery *innerQuery = [PFQuery queryWithClassName:@"PromoWinner"];
+    [innerQuery selectKeys:@[@"promoID"]];
+    [innerQuery whereKey:@"user" equalTo:[PFUser currentUser]];
+    [innerQuery findObjectsInBackgroundWithBlock:^(NSArray *idsPromo, NSError *error) {
+        
+        NSLog(@"%lu", (unsigned long)idsPromo.count);
+        NSMutableArray *idsArray = [NSMutableArray array];
+        for (PFObject *promoWinner in idsPromo) {
+            PFObject *promo = [promoWinner objectForKey:@"promoID"];
+            NSString *objectID = promo.objectId;
+            [idsArray addObject:objectID];
+        }
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"Promo"];
+        [query whereKey:@"objectId" notContainedIn:idsArray];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *promosNotWinner, NSError *error) {
+            
+            //FOR THE SUMMARY CELL
+            //Count number of promos in the array
+            self.noOfPromosLabel = promosNotWinner.count;
+            
+            //Sum the total promo value amount
+            double sum = 0;
+            for (NSNumber * n in [promosNotWinner valueForKey:@"promoValueAmount"]) {
+                sum += [n doubleValue];
+            }
+            self.promoSummaryTotalValue = sum ;
+            //END// FOR THE SUMMARY CELL
+
+            
+            //only used to return each image in the objectAtIndex
+            int i = 0;
+            
+            
+            for (PFObject *promo in promosNotWinner) {
+                
+                
+                //Initialise promo object
+                PromoItem *promoItem = [[PromoItem alloc]init];
+                
+                //Paint Promo specific properties
+                promoItem.promoSummary = [promo valueForKey:@"promoSummary"];
+                promoItem.promoDescription = [promo valueForKey:@"promoDescription"];
+                promoItem.promoValueAmount = [[promo valueForKey:@"promoValueAmount"] integerValue];
+                promoItem.promoValidUntil = [promo valueForKey:@"promoValidUntil"];
+                promoItem.promoObjectId = [promo valueForKey:@"objectId"];
+                promoItem.promoType = [promo objectForKey:@"promoType"];
+                promoItem.promoStatus = [promo objectForKey:@"promoStatus"];
+
+                //STUCK - DOES NOT WORK - Paint Retailer specific properties
+//                promoItem.promoRetailerName = [[promo valueForKey:@"advertiserID"]valueForKey:@"advertiserName"];
+//                promoItem.promoRetailerType = [[promo valueForKey:@"advertiserID"]valueForKey:@"advertiserType"];
+//                promoItem.promoRetailerURL = [[promo valueForKey:@"advertiserID"]valueForKey:@"advertiserURL"];
+//                promoItem.promoRetailerTelephone = [[promo valueForKey:@"advertiserID"]valueForKey:@"advertiserTelephone"];
+                
+                
+                //method to load the Promo Image
+                PFFile *promoImage = [[promosNotWinner objectAtIndex:i] objectForKey:@"promoImage"];
+                [promoImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                    promoItem.promoImage = [UIImage imageWithData:data];
+                    
+                    //reload the data in the tableview
+                    [self.tableView reloadData];
+                    
+                }];
+                
+                
+                i++;
+                [self.promoItems addObject:promoItem];
+                [self.tableView reloadData];
+                
+            }
+        }];
+        
+    }];
     
 }
 
@@ -86,6 +161,7 @@
                 sum += [n doubleValue];
             }
             self.promoSummaryTotalValue = sum ;
+            //END// FOR THE SUMMARY CELL
 
             
             //only used to return each image in the objectAtIndex
@@ -147,45 +223,8 @@
 }
 
 
--(void)getPromoIdFromPromoWinnerTable{
-    
-   
-        PFQuery *innerQuery = [PFQuery queryWithClassName:@"PromoWinner"];
-        [innerQuery selectKeys:@[@"promoID"]];
-        [innerQuery whereKey:@"user" equalTo:[PFUser currentUser]];
-        [innerQuery findObjectsInBackgroundWithBlock:^(NSArray *idsPromo, NSError *error) {
-            
-            NSLog(@"%lu", (unsigned long)idsPromo.count);
-            NSMutableArray *idsArray = [NSMutableArray array];
-            for (PFObject *promoWinner in idsPromo) {
-                PFObject *promo = [promoWinner objectForKey:@"promoID"];
-                NSString *objectID = promo.objectId;
-                [idsArray addObject:objectID];
-            }
 
-            PFQuery *query = [PFQuery queryWithClassName:@"Promo"];
-            [query whereKey:@"objectId" notContainedIn:idsArray];
-            [query findObjectsInBackgroundWithBlock:^(NSArray *promosNotWinner, NSError *error) {
-                
-                NSLog(@"pomoNotWinner count: %lu", (unsigned long)promosNotWinner.count);
-                NSLog(@"promoSummary: %@", [promosNotWinner valueForKey:@"promoSummary"]);
-                NSLog(@"promoDescription: %@", [promosNotWinner valueForKey:@"promoDescription"]);
-                NSLog(@"promoValueAmount: %@", [promosNotWinner valueForKey:@"promoValueAmount"]);
-                NSLog(@"promoCurrency: %@", [promosNotWinner valueForKey:@"promoCurrency"]);
-                NSLog(@"promoValidUntil: %@", [promosNotWinner valueForKey:@"promoValidUntil"]);
-                NSLog(@"advertiserID: %@", [promosNotWinner valueForKey:@"advertiserID"]);
-                
-//                NSLog(@"advertiserID: %@", [[promosNotWinner valueForKey:@"advertiserID"] valueForKey:@"advertiserName"]);
 
-            
-                
-
-            }];
-
-        }];
-        
-    
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -204,33 +243,6 @@
     return [self.promoItems count] +1;
 }
 
-
-//-(IBAction)unwindToList:(UIStoryboardSegue *)segue{
-//    
-//    AddPromoViewController *source = [segue sourceViewController];
-//    PromoItem *promoItem = source.promoItem;
-//    
-//    if (promoItem != nil) {
-//        [self.promoItems addObject:promoItem];
-//        [self.tableView reloadData];
-//    };
-//}
-
-
-//  UNCOMMENT THIS TO GO BACK TO DETAIL CELLS FORMAT
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//   
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPropertyCell" forIndexPath:indexPath];
-//    
-//    //DETAIL CELL - Configure the cell...
-//    PromoItem *promoItem = [self.promoItems objectAtIndex:indexPath.row];
-//    cell.textLabel.text = promoItem.promoRetailerName;
-//    cell.detailTextLabel.text = promoItem.promoSummary;
-//    [cell.imageView setFrame:CGRectMake(0, 0, 10, 10)];
-//    cell.imageView.image = promoItem.promoImage;
-//
-//    return cell;
-//}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -259,6 +271,17 @@
         return cell;
     }
 }
+
+
+//Define size of Cells
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row ==0) {
+        return 40;
+    } else {
+        return 85;
+    }
+}
+
 
 #pragma mark - Table View Delegate
 
