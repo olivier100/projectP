@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WOi-Mp-Fgg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4fn-5E-9RF">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -371,7 +371,7 @@
         <scene sceneID="p7V-mf-Q7b">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yXQ-Q2-f1b" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Wins" image="ShoppingIcon.png" id="vLD-nK-iQ8"/>
+                    <tabBarItem key="tabBarItem" title="Wins" image="WinsIcon.png" id="vLD-nK-iQ8"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hd1-nH-YAL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -503,6 +503,27 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yHp-Wh-bj6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-276" y="723"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="iv4-b8-Sfd">
+            <objects>
+                <viewController id="4fn-5E-9RF" customClass="LoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ghi-iC-oGT"/>
+                        <viewControllerLayoutGuide type="bottom" id="J8t-ch-rEj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="z4K-Ia-XCl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="WOi-Mp-Fgg" kind="show" identifier="loginSegue" id="ivj-pd-b1M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UgV-Mt-MMN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1016" y="723"/>
         </scene>
         <!--My Wins Details View Controller-->
         <scene sceneID="6mP-3Z-8GN">
@@ -773,7 +794,7 @@
     </scenes>
     <resources>
         <image name="DiscountIcon.png" width="22" height="22"/>
-        <image name="ShoppingIcon.png" width="21" height="21"/>
+        <image name="WinsIcon.png" width="22" height="30"/>
         <image name="winLogo" width="250" height="249"/>
     </resources>
 </document>

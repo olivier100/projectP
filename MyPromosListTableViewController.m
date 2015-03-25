@@ -28,10 +28,10 @@
     [super viewDidLoad];
 
 //    [self showLogin];
-    if (![PFUser currentUser]) {
-        [PFUser logInWithUsername:@"ccc" password:@"ccc"];
-    }
-        
+//    if (![PFUser currentUser]) {
+//        [PFUser logInWithUsername:@"ccc" password:@"ccc"];
+//    }
+    
     self.promoItems = [[NSMutableArray alloc] init];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

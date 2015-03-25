@@ -11,7 +11,7 @@
 #import <ParseUI.h>
 
 
-@interface LoginViewController : UIViewController <PFSignUpViewControllerDelegate, PFLogInViewControllerDelegate>
+@interface LoginViewController : PFLogInViewController <PFSignUpViewControllerDelegate, PFLogInViewControllerDelegate>
 
 
 @end

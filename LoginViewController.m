@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "MyPromosListTableViewController.h"
 
 @interface LoginViewController ()
 
@@ -19,6 +20,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    
     if ([PFUser currentUser]) {
 //        self.welcomeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Welcome %@!", nil), [[PFUser currentUser] username]];
     } else {
@@ -28,6 +31,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    self.delegate = self;
     
     if (![PFUser currentUser]) { // No user logged in
         // Create the log in view controller
@@ -64,6 +69,8 @@
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:NULL];
+    [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+
 }
 
 // Sent to the delegate when the log in attempt fails.
@@ -104,6 +111,8 @@
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:NULL];
+    [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+
 }
 
 // Sent to the delegate when the sign up attempt fails.
@@ -124,5 +133,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+
 @end
-    
+
