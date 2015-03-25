@@ -28,11 +28,6 @@
     
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    [self.promoItems removeAllObjects];
-    [self loadInitialData];
-}
-
 
 -(void)loadInitialData{
 
@@ -100,7 +95,10 @@
 }
 
 
-
+-(void)viewDidAppear:(BOOL)animated{
+    [self.promoItems removeAllObjects];
+    [self loadInitialData];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

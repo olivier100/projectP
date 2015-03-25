@@ -49,11 +49,6 @@
 
 -(void)getPromosExcludingPromosWonByUser{
     
-    //Create the PromoQuery linked to the Promo table in parse
-    PFQuery *promoQuery = [PFQuery queryWithClassName:@"Promo"];
-    
-    //Add the column making the connection to the Advertiser table
-    [promoQuery includeKey:@"advertiserID"];
     
     PFQuery *innerQuery = [PFQuery queryWithClassName:@"PromoWinner"];
     [innerQuery selectKeys:@[@"promoID"]];
@@ -69,6 +64,8 @@
         }
         
         PFQuery *query = [PFQuery queryWithClassName:@"Promo"];
+            [query includeKey:@"advertiserID"];
+
         [query whereKey:@"objectId" notContainedIn:idsArray];
         [query findObjectsInBackgroundWithBlock:^(NSArray *promosNotWinner, NSError *error) {
             
@@ -105,7 +102,7 @@
                 promoItem.promoStatus = [promo objectForKey:@"promoStatus"];
 
                 //STUCK - DOES NOT WORK - Paint Retailer specific properties
-//                promoItem.promoRetailerName = [[promo valueForKey:@"advertiserID"]valueForKey:@"advertiserName"];
+                promoItem.promoRetailerName = [[promo valueForKey:@"advertiserID"]valueForKey:@"advertiserName"];
 //                promoItem.promoRetailerType = [[promo valueForKey:@"advertiserID"]valueForKey:@"advertiserType"];
 //                promoItem.promoRetailerURL = [[promo valueForKey:@"advertiserID"]valueForKey:@"advertiserURL"];
 //                promoItem.promoRetailerTelephone = [[promo valueForKey:@"advertiserID"]valueForKey:@"advertiserTelephone"];
