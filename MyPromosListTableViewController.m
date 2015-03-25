@@ -277,7 +277,7 @@
 //Define size of Cells
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row ==0) {
-        return 40;
+        return 25;
     } else {
         return 85;
     }

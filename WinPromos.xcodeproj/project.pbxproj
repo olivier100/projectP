@@ -27,6 +27,8 @@
 		09A739661ABF252400B1ADE6 /* PromoTypeUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A739651ABF252400B1ADE6 /* PromoTypeUIImageView.m */; };
 		09CC75EE1AC057400074A122 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09CC75ED1AC057400074A122 /* Main.storyboard */; };
 		09D3AFDC1AC2BC9B005F334C /* DefaultSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09D3AFDB1AC2BC9B005F334C /* DefaultSettingsViewController.xib */; };
+		09D3AFF81AC2CC2A005F334C /* DiscountIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 09D3AFF71AC2CC2A005F334C /* DiscountIcon.png */; };
+		09D3AFFA1AC2CC63005F334C /* ShoppingIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 09D3AFF91AC2CC63005F334C /* ShoppingIcon.png */; };
 		09F31B421ABB91D80019B89D /* MyWinsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F31B411ABB91D80019B89D /* MyWinsTableViewController.m */; };
 		30F2AFC955B5793AD5647EA5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A676B11CF815CD5717AF62F /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -77,6 +79,8 @@
 		09A739651ABF252400B1ADE6 /* PromoTypeUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PromoTypeUIImageView.m; path = WinPromos/PromoTypeUIImageView.m; sourceTree = "<group>"; };
 		09CC75ED1AC057400074A122 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = WinPromos/Main.storyboard; sourceTree = "<group>"; };
 		09D3AFDB1AC2BC9B005F334C /* DefaultSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DefaultSettingsViewController.xib; sourceTree = "<group>"; };
+		09D3AFF71AC2CC2A005F334C /* DiscountIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiscountIcon.png; sourceTree = "<group>"; };
+		09D3AFF91AC2CC63005F334C /* ShoppingIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShoppingIcon.png; sourceTree = "<group>"; };
 		09F31B401ABB91D80019B89D /* MyWinsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWinsTableViewController.h; sourceTree = "<group>"; };
 		09F31B411ABB91D80019B89D /* MyWinsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWinsTableViewController.m; sourceTree = "<group>"; };
 		4A676B11CF815CD5717AF62F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +136,7 @@
 		093315401AB6F11E0083F111 = {
 			isa = PBXGroup;
 			children = (
+				09D3AFDE1AC2C754005F334C /* Images */,
 				09CD0DC71ABF3B8D00C8AD8A /* View */,
 				09CD0DC61ABF3B5200C8AD8A /* Games */,
 				0933157C1AB713100083F111 /* Model */,
@@ -252,6 +257,15 @@
 			name = NotUsed_Test;
 			sourceTree = "<group>";
 		};
+		09D3AFDE1AC2C754005F334C /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				09D3AFF71AC2CC2A005F334C /* DiscountIcon.png */,
+				09D3AFF91AC2CC63005F334C /* ShoppingIcon.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		7E09350A3C581E3A1C6D9C75 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,11 +365,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09D3AFFA1AC2CC63005F334C /* ShoppingIcon.png in Resources */,
 				097A2C261ABB1D8D00DE5C81 /* SlotMachine in Resources */,
 				09CC75EE1AC057400074A122 /* Main.storyboard in Resources */,
 				0933155D1AB6F11F0083F111 /* LaunchScreen.xib in Resources */,
 				09A1C9DC1AC16FC300FDA591 /* SlotMachine2 in Resources */,
 				0933155A1AB6F11F0083F111 /* Images.xcassets in Resources */,
+				09D3AFF81AC2CC2A005F334C /* DiscountIcon.png in Resources */,
 				097A2C241ABAC99800DE5C81 /* CrappyBird-master in Resources */,
 				09D3AFDC1AC2BC9B005F334C /* DefaultSettingsViewController.xib in Resources */,
 			);
