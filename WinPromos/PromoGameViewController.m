@@ -11,7 +11,7 @@
 #import <Parse/Parse.h>
 #import "PromoDetailsViewController.h"
 
-@interface PromoGameViewController () <WKScriptMessageHandler, UIWebViewDelegate> //TRIAL
+@interface PromoGameViewController () <WKScriptMessageHandler, UIWebViewDelegate>
 
 //Properties specific to the PROMO
 @property (weak, nonatomic) IBOutlet UILabel *promoSummaryLabel;
@@ -51,22 +51,31 @@
     
     self.gameUIWebView.delegate = self;
 
+    [self paintDataOnScreen];
+    [self setUpTheWebViews];
+    
+}
+
+-(void)paintDataOnScreen{
     self.promoRetailerName.text = self.promoItem.promoRetailerName;
     self.promoRetailerURLLabel.text = (NSString*)self.promoItem.promoRetailerURL;
     self.promoRetailerTelephoneLabel.text = self.promoItem.promoRetailerTelephone;
     self.promoRetailerLogoUIImageView.image = self.promoItem.promoRetailerLogo;
-
+    
     self.promoSummaryLabel.text = self.promoItem.promoSummary;
     self.promoDescriptionLabel.text = self.promoItem.promoDescription;
     self.promoImageUIImageView.image = self.promoItem.promoImage;
     self.promoValideUntilLabel.text = [NSString stringWithFormat:@"%@",self.promoItem.promoValidUntil];
     self.promoValueAmountLabel.text = [NSString stringWithFormat:@"%lu",self.promoItem.promoValueAmount];
     
+}
+
+-(void)setUpTheWebViews{
     
-//WKWEBVIEW - GAME
+    //WKWEBVIEW - GAME
     
     //WKWEBVIEW - Setting the up WkWebKit Configuration and Controller to be able to use the "didReceiveScriptMessage" method
-
+    
     // (1) Setting the WKWebView
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc]init];
     WKUserContentController *controller = [[WKUserContentController alloc]init];
@@ -80,21 +89,20 @@
     NSURL *url = [NSURL fileURLWithPath:gamePath];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [_gameWKwebView loadRequest:request];
-
+    
     // (3) paint it on screen
     _gameWKwebView.frame = CGRectMake(0, 175, self.view.frame.size.width, self.view.frame.size.height/1.5);
     [self.view addSubview:_gameWKwebView];
     
-//WKWEBVIEW - SLOT MACHINE
-
+    //WKWEBVIEW - SLOT MACHINE
+    
     //Setting the WKWebView
     WKWebViewConfiguration *configurationSlotMachine = [[WKWebViewConfiguration alloc]init];
     WKUserContentController *controllerSlotMachine = [[WKUserContentController alloc]init];
     [controllerSlotMachine addScriptMessageHandler:self name:@"observeHandlerSlotMachine"];
-
+    
     configuration.userContentController = configurationSlotMachine;
     _gameWKwebViewSlotMachine = [[WKWebView alloc] initWithFrame:self.view.frame configuration:configurationSlotMachine];
-    
 }
 
 
@@ -166,7 +174,7 @@
     
     }
 
-    return TRUE;
+    return webView;
 
 }
 

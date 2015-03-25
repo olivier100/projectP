@@ -8,16 +8,16 @@
 
 #import "MyPromosListTableViewController.h"
 #import "PromoItem.h"
-#import "AddPromoViewController.h"
 #import "PromoGameViewController.h"
+#import "LoginViewController.h"
 #import <Parse/Parse.h>
 
 #import "ListPropertyCellTableViewCell.h"
 @interface MyPromosListTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *promoItems;
-@property int noOfPromosLabel;
-@property int promoSummaryTotalValue;
+@property (nonatomic) int noOfPromosLabel;
+@property (nonatomic) int promoSummaryTotalValue;
 
 
 @end
@@ -26,7 +26,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+//    [self showLogin];
     if (![PFUser currentUser]) {
         [PFUser logInWithUsername:@"ccc" password:@"ccc"];
     }
@@ -34,10 +35,15 @@
     self.promoItems = [[NSMutableArray alloc] init];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
     [self getPromosExcludingPromosWonByUser];
+    
 }
 
-
+- (void)showLogin {
+    LoginViewController *login = [[LoginViewController alloc]init];
+    [self presentViewController:login animated:YES completion:nil];
+}
 
 
 
@@ -48,7 +54,6 @@
     
     //Add the column making the connection to the Advertiser table
     [promoQuery includeKey:@"advertiserID"];
-    
     
     PFQuery *innerQuery = [PFQuery queryWithClassName:@"PromoWinner"];
     [innerQuery selectKeys:@[@"promoID"]];
@@ -69,7 +74,7 @@
             
             //FOR THE SUMMARY CELL
             //Count number of promos in the array
-            self.noOfPromosLabel = promosNotWinner.count;
+            self.noOfPromosLabel = (int) promosNotWinner.count;
             
             //Sum the total promo value amount
             double sum = 0;
@@ -141,10 +146,6 @@
     //Add the column making the connection to the Advertiser table
     [promoQuery includeKey:@"advertiserID"];
     
-    PFObject *promoWinner = [PFObject objectWithClassName:@"PromoWinner"];
-    [promoQuery whereKeyDoesNotExist:@"promoID"];
-    
-    
     //Parse method to download the tables
     [promoQuery findObjectsInBackgroundWithBlock:^(NSArray *promoTableFromParse, NSError *error) {
         
@@ -153,7 +154,7 @@
             
             //FOR THE SUMMARY CELL
             //Count number of promos in the array
-            self.noOfPromosLabel = promoTableFromParse.count;
+            self.noOfPromosLabel = (int) promoTableFromParse.count;
             
             //Sum the total promo value amount
             double sum = 0;
@@ -250,9 +251,9 @@
     
     if (indexPath.row == 0) {
         ListPropertyCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PromosSummaryPropertyCell" forIndexPath:indexPath];
-        NSLog(@"no of promos = %lu", self.noOfPromosLabel);
-        cell.noOfPromosLabel.text = [NSString stringWithFormat:@"%lu", self.noOfPromosLabel];
-        cell.promoSummaryTotalValue.text = [NSString stringWithFormat:@"%lu", self.promoSummaryTotalValue];
+        NSLog(@"no of promos = %d", self.noOfPromosLabel);
+        cell.noOfPromosLabel.text = [NSString stringWithFormat:@"%d", self.noOfPromosLabel];
+        cell.promoSummaryTotalValue.text = [NSString stringWithFormat:@"%d", self.promoSummaryTotalValue];
 
         return cell;
         
@@ -266,7 +267,7 @@
         cell.promoSummaryLabel.text = promoItem.promoSummary;
         cell.promoImageLabel.image = promoItem.promoImage;
         cell.promoValueAmountLabel.text = [NSString stringWithFormat:@"%lu", promoItem.promoValueAmount];
-        cell.noOfPromosLabel.text = [NSString stringWithFormat:@"%lu", self.noOfPromosLabel];
+        cell.noOfPromosLabel.text = [NSString stringWithFormat:@"%d", self.noOfPromosLabel];
         
         return cell;
     }

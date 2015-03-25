@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09115A4F1AC2169200165031 /* UserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09115A4E1AC2169200165031 /* UserLoginViewController.m */; };
 		092A0C541ABC2F830057D337 /* MyWinsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 092A0C531ABC2F830057D337 /* MyWinsDetailsViewController.m */; };
 		0933154F1AB6F11E0083F111 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0933154E1AB6F11E0083F111 /* main.m */; };
 		093315521AB6F11E0083F111 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 093315511AB6F11E0083F111 /* AppDelegate.m */; };
 		0933155A1AB6F11F0083F111 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 093315591AB6F11F0083F111 /* Images.xcassets */; };
 		0933155D1AB6F11F0083F111 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0933155B1AB6F11F0083F111 /* LaunchScreen.xib */; };
 		093315691AB6F11F0083F111 /* WinPromosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 093315681AB6F11F0083F111 /* WinPromosTests.m */; };
-		093315741AB701A20083F111 /* AddPromoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093315731AB701A20083F111 /* AddPromoViewController.m */; };
 		093315781AB7039F0083F111 /* MyPromosListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093315771AB7039F0083F111 /* MyPromosListTableViewController.m */; };
 		0933157B1AB713070083F111 /* PromoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0933157A1AB713070083F111 /* PromoItem.m */; };
 		0933157F1AB739D50083F111 /* PromoGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0933157E1AB739D50083F111 /* PromoGameViewController.m */; };
@@ -26,6 +26,7 @@
 		09A1C9E21AC1B8C500FDA591 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A1C9E11AC1B8C500FDA591 /* TestViewController.m */; };
 		09A739661ABF252400B1ADE6 /* PromoTypeUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A739651ABF252400B1ADE6 /* PromoTypeUIImageView.m */; };
 		09CC75EE1AC057400074A122 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09CC75ED1AC057400074A122 /* Main.storyboard */; };
+		09D3AFDC1AC2BC9B005F334C /* DefaultSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09D3AFDB1AC2BC9B005F334C /* DefaultSettingsViewController.xib */; };
 		09F31B421ABB91D80019B89D /* MyWinsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F31B411ABB91D80019B89D /* MyWinsTableViewController.m */; };
 		30F2AFC955B5793AD5647EA5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A676B11CF815CD5717AF62F /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -41,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09115A4D1AC2169200165031 /* UserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginViewController.h; sourceTree = "<group>"; };
+		09115A4E1AC2169200165031 /* UserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginViewController.m; sourceTree = "<group>"; };
 		092A0C521ABC2F830057D337 /* MyWinsDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWinsDetailsViewController.h; sourceTree = "<group>"; };
 		092A0C531ABC2F830057D337 /* MyWinsDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWinsDetailsViewController.m; sourceTree = "<group>"; };
 		093315491AB6F11E0083F111 /* WinPromos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WinPromos.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,8 +56,6 @@
 		093315621AB6F11F0083F111 /* WinPromosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WinPromosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		093315671AB6F11F0083F111 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		093315681AB6F11F0083F111 /* WinPromosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WinPromosTests.m; sourceTree = "<group>"; };
-		093315721AB701A20083F111 /* AddPromoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPromoViewController.h; sourceTree = "<group>"; };
-		093315731AB701A20083F111 /* AddPromoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPromoViewController.m; sourceTree = "<group>"; };
 		093315761AB7039F0083F111 /* MyPromosListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPromosListTableViewController.h; sourceTree = "<group>"; };
 		093315771AB7039F0083F111 /* MyPromosListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPromosListTableViewController.m; sourceTree = "<group>"; };
 		093315791AB713070083F111 /* PromoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoItem.h; sourceTree = "<group>"; };
@@ -75,6 +76,7 @@
 		09A739641ABF252400B1ADE6 /* PromoTypeUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromoTypeUIImageView.h; path = WinPromos/PromoTypeUIImageView.h; sourceTree = "<group>"; };
 		09A739651ABF252400B1ADE6 /* PromoTypeUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PromoTypeUIImageView.m; path = WinPromos/PromoTypeUIImageView.m; sourceTree = "<group>"; };
 		09CC75ED1AC057400074A122 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = WinPromos/Main.storyboard; sourceTree = "<group>"; };
+		09D3AFDB1AC2BC9B005F334C /* DefaultSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DefaultSettingsViewController.xib; sourceTree = "<group>"; };
 		09F31B401ABB91D80019B89D /* MyWinsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWinsTableViewController.h; sourceTree = "<group>"; };
 		09F31B411ABB91D80019B89D /* MyWinsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWinsTableViewController.m; sourceTree = "<group>"; };
 		4A676B11CF815CD5717AF62F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				09CC75F21AC091AA0074A122 /* LoginSignUp */,
-				09A739671ABF274A00B1ADE6 /* AddAPromo */,
 				092A0C551ABC2F9D0057D337 /* Promos */,
 				092A0C561ABC2FAA0057D337 /* Wins */,
 				09A1C9E01AC1B8C500FDA591 /* TestViewController.h */,
@@ -213,20 +214,13 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		09A739671ABF274A00B1ADE6 /* AddAPromo */ = {
-			isa = PBXGroup;
-			children = (
-				093315721AB701A20083F111 /* AddPromoViewController.h */,
-				093315731AB701A20083F111 /* AddPromoViewController.m */,
-			);
-			name = AddAPromo;
-			sourceTree = "<group>";
-		};
 		09CC75F21AC091AA0074A122 /* LoginSignUp */ = {
 			isa = PBXGroup;
 			children = (
 				09A1C9DD1AC1B32A00FDA591 /* LoginViewController.h */,
 				09A1C9DE1AC1B32A00FDA591 /* LoginViewController.m */,
+				09D3AFDB1AC2BC9B005F334C /* DefaultSettingsViewController.xib */,
+				09D3AFDD1AC2C022005F334C /* NotUsed_Test */,
 			);
 			name = LoginSignUp;
 			sourceTree = "<group>";
@@ -247,6 +241,15 @@
 				09CC75ED1AC057400074A122 /* Main.storyboard */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		09D3AFDD1AC2C022005F334C /* NotUsed_Test */ = {
+			isa = PBXGroup;
+			children = (
+				09115A4D1AC2169200165031 /* UserLoginViewController.h */,
+				09115A4E1AC2169200165031 /* UserLoginViewController.m */,
+			);
+			name = NotUsed_Test;
 			sourceTree = "<group>";
 		};
 		7E09350A3C581E3A1C6D9C75 /* Pods */ = {
@@ -354,6 +357,7 @@
 				09A1C9DC1AC16FC300FDA591 /* SlotMachine2 in Resources */,
 				0933155A1AB6F11F0083F111 /* Images.xcassets in Resources */,
 				097A2C241ABAC99800DE5C81 /* CrappyBird-master in Resources */,
+				09D3AFDC1AC2BC9B005F334C /* DefaultSettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,7 +410,6 @@
 			files = (
 				093315521AB6F11E0083F111 /* AppDelegate.m in Sources */,
 				09A1C9E21AC1B8C500FDA591 /* TestViewController.m in Sources */,
-				093315741AB701A20083F111 /* AddPromoViewController.m in Sources */,
 				0933154F1AB6F11E0083F111 /* main.m in Sources */,
 				09F31B421ABB91D80019B89D /* MyWinsTableViewController.m in Sources */,
 				09A739661ABF252400B1ADE6 /* PromoTypeUIImageView.m in Sources */,
@@ -415,6 +418,7 @@
 				0933157B1AB713070083F111 /* PromoItem.m in Sources */,
 				09A1C9DF1AC1B32A00FDA591 /* LoginViewController.m in Sources */,
 				096879611ABDF7B700ADA4B2 /* PromoDetailsViewController.m in Sources */,
+				09115A4F1AC2169200165031 /* UserLoginViewController.m in Sources */,
 				0968795E1ABDD81900ADA4B2 /* ListPropertyCellTableViewCell.m in Sources */,
 				093315781AB7039F0083F111 /* MyPromosListTableViewController.m in Sources */,
 			);
