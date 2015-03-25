@@ -84,8 +84,33 @@
     configuration.userContentController = controller;
     _gameWKwebView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:configuration];
     
+    //JOAN CODE
+    
+    NSString *crappyBirdDirectory = [[[NSBundle mainBundle] resourcePath]
+                                     stringByAppendingPathComponent:@"CrappyBird-master"];
+    NSString *tmpDirectory = NSTemporaryDirectory();
+    
+    NSArray* crappyContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:crappyBirdDirectory  error:NULL];
+    
+    for (NSString* obj in crappyContents){
+        NSError* error;
+        if (![[NSFileManager defaultManager]
+              copyItemAtPath:[crappyBirdDirectory stringByAppendingPathComponent:obj]
+              toPath:[tmpDirectory stringByAppendingPathComponent:obj]
+              error:&error])
+            NSLog(@"%@", [error localizedDescription]);
+        NSLog(@" obj %@", obj);
+    }
+    
+    //END JOAN CODE
+    
+    
+    
     // (2) Implement WkWebView and load internal game
-    NSString *gamePath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"CrappyBird-master"];
+//    NSString *gamePath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"CrappyBird-master"];
+   
+    NSString *gamePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"index.html"];
+    
     NSURL *url = [NSURL fileURLWithPath:gamePath];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [_gameWKwebView loadRequest:request];
